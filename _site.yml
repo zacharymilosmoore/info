@@ -1,11 +1,10 @@
 name: "Zachary M. Moore"
 navbar:
-  title: "Zack's Site"
+  title: "Zachary M. Moore"
   left:
-    - text: "Home"
+    - text: "About"
       href: index.html
-    - text: "Journal"
-      href: Journal.html
-    - text: "Links"
-      href: Links.html
+   # - text: "Work History"
+    #  href: WorkHistory.html
+    
 output_dir: "docs"

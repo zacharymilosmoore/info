@@ -1,5 +1,5 @@
 ---
-title: "info"
+title: "Zachary M. Moore"
 output: html_document
 ---
 
@@ -17,27 +17,26 @@ output: html_document
 <div class="row" style="padding-top: 30px;">
 <div class="col-sm-6">
 
-# **Zachary M. Moore**
+# **About Me**
 
-This is a template example for lab journaling. Students in Matt Crump's Human Cognition and Performance Lab will use this template to learn R, and other things. Students can replace this text with more fun things. People not in my lab can use this too.
+I am an emerging environmental professional specializing in ecology, ecological restoration, and natural resources management. I am currently studying at the University of Manitoba as a Weston Family Conservation Science Fellow, and my research focuses on grassland bird conservation on private conservation rangelands in southwestern Alberta, Canada. 
 
-## How to use
 
-1. fork the repo for this website and follow instructions on read me to get set up. [https://github.com/CrumpLab/LabJournalWebsite](https://github.com/CrumpLab/LabJournalWebsite)
+## My Specialities
 
-2. Blog/journal what you are doing in R, by editing the Journal.Rmd. See the [Journal page](https://crumplab.github.io/LabJournalWebsite/Journal.html) for an example of what to do to get started learning R.
-
-3. See the [links page](https://crumplab.github.io/LabJournalWebsite/Links.html) for lots of helpful links on learning R.
-
-4. Change everything to make it your own.
+- Scientific Study Design, Implementation, and Reporting
+- Ecological Monitoring, Mapping, and Assessment
+- Ecological Restoration Planning, Implementation, and Assessment
+- Data Analysis Using R Statistical Programming and Geographic Information Systems (GIS)
+- Database Design Using Microsoft Excel, Access
+- Technical Reporting
+- Non-profit Governance and Administration
+- Outdoor Education and Outreach
 
 
 </div>
 <div class="col-sm-6">
 
-### [Crump Lab: Human Cognition and Performance](https://crumplab.github.io)
-
-<a href = "https://crumplab.github.io">
-![](images/logo.png)
+![](images/headshot.jpg)
 </a>
 </div>

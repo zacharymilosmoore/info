@@ -1,0 +1,46 @@
+---
+title: "CV"
+output: html_document
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readxl)
+library(jsonlite)
+library(tidyverse)
+library(glue)
+
+```
+
+```{r, echo=FALSE,results="asis"}
+
+cv<-read_excel("cv_data/cv_zmm.xlsx",sheet="CV")
+categories<-c("Education","Employment","Projects")
+
+for (c in categories){
+  cv_sub<-subset(cv,Category== c & CV=="Include")
+  
+  cat("#", c, "\n")
+  
+  for (i in 1:nrow(cv_sub)){
+    entry<-cv_sub[i,]
+    start<-as.character(paste(entry$Start_Month,"-",entry$Start_Year,sep=""))
+    end<-as.character(paste(entry$End_Month,"-",entry$End_Year,sep=""))
+    timing<-as.character(paste(start," to ",end,sep=""))
+
+    cat("##", entry$Title, "{.tabset}", "\n","\n")
+
+    cat("###", timing,"\n","\n")
+    cat("###", entry$Organization,"\n","\n")
+        cat("[",entry$Organization,"]", "(",entry$Organization.Link,")","\n","\n",sep="")
+
+    cat("###", "Description", "\n","\n")
+    cat(entry$Description, "\n","\n")
+
+  }
+  cat("\n")
+}
+
+```
+

@@ -4,10 +4,9 @@ navbar:
   left:
     - text: "About"
       href: index.html
-#    - text: "Projects"
-#      href: Projects.html
-   # - text: "Work History"
-    #  href: WorkHistory.html
+    - text: "Employment"
+      href: employment.html
+
 
 output:
   html_document:

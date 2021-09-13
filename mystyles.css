@@ -1,0 +1,22 @@
+.container-fluid.main-container {
+  background-color: #ffffff !important;
+  padding-bottom: 20px;
+}
+
+body {
+  font-size: 16px;
+  background-position: top;
+  background-size: cover;
+  background-attachment: fixed;
+  background-image: url(images/background.jpg);
+  background-repeat: no-repeat;
+}
+
+.navbar-brand {
+  background-image: url(images/tree.png);
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: left;
+  padding-left: 35px;
+  margin-left: 5px;
+}

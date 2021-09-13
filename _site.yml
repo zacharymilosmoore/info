@@ -4,7 +4,13 @@ navbar:
   left:
     - text: "About"
       href: index.html
+#    - text: "Projects"
+#      href: Projects.html
    # - text: "Work History"
     #  href: WorkHistory.html
-    
+
+output:
+  html_document:
+    theme: sandstone
+    css: mystyles.css
 output_dir: "docs"

@@ -17,9 +17,9 @@ output: html_document
 <div class="row" style="padding-top: 30px;">
 <div class="col-sm-6">
 
-# **About Me**
+# **Home**
 
-I am an emerging environmental professional specializing in ecology, ecological restoration, and natural resources management. I am currently studying at the University of Manitoba as a Weston Family Conservation Science Fellow, and my research focuses on grassland bird conservation on private conservation rangelands in southwestern Alberta, Canada. 
+I am an emerging environmental professional specializing in ecology, ecological restoration, and natural resources management. I am currently studying at the University of Manitoba in conjunction with the [Nature Conservancy of Canada](https://www.natureconservancy.ca/en/) as a [Weston Family Conservation Science Fellow](https://www.natureconservancy.ca/en/what-we-do/conservation-research/weston-fellowship.html), and my research focuses on grassland bird conservation on private conservation rangelands in southwestern Alberta, Canada. 
 
 
 ## My Specialities
@@ -37,6 +37,6 @@ I am an emerging environmental professional specializing in ecology, ecological 
 </div>
 <div class="col-sm-6">
 
-![](images/headshot.jpg)
+![](images/headshot.jpg){width=75%}
 </a>
 </div>

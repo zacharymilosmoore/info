@@ -4,7 +4,7 @@ navbar:
   left:
     - text: "About"
       href: index.html
-    - text: "Employment"
+    - text: "CV"
       href: employment.html
 
 

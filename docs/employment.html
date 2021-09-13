@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -219,6 +222,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -226,6 +292,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -246,7 +322,7 @@ $(document).ready(function () {
   <a href="index.html">About</a>
 </li>
 <li>
-  <a href="employment.html">Employment</a>
+  <a href="employment.html">CV</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -260,246 +336,412 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">CV</h1>
+<h1 class="title toc-ignore"><strong>CV</strong></h1>
 
 </div>
 
 
 <div id="education" class="section level1">
-<h1>Education</h1>
-<div id="masters-of-natural-resources-management" class="section level2 tabset">
-<h2 class="tabset">Master’s of Natural Resources Management</h2>
+<h1><strong>Education</strong></h1>
+<div id="university-of-manitoba" class="section level2 tabset">
+<h2 class="tabset">University of Manitoba</h2>
 <div id="to-4-2022" class="section level3">
 <h3>9-2020 to 4-2022</h3>
 </div>
-<div id="university-of-manitoba" class="section level3">
-<h3>University of Manitoba</h3>
-<p><a href="www.umanitoba.ca">University of Manitoba</a></p>
+<div id="university-of-manitoba-uofm" class="section level3">
+<h3>University of Manitoba (UofM)</h3>
+<p><a href="www.umanitoba.ca">University of Manitoba (UofM)</a></p>
 </div>
 <div id="description" class="section level3">
 <h3>Description</h3>
+<p><strong>Master’s of Natural Resources Management</strong></p>
 <p>Thesis will focus on the impact of conservation and management practises on grassland songbird communities in the Waterton Park Front of Southern Alberta.</p>
+<p>Awarded Weston Family Conservation Science Fellowship in conjunction with the Nature Conservancy of Canada.</p>
+</div>
+<div id="visuals" class="section level3">
+<h3>Visuals</h3>
 </div>
 </div>
-<div id="post-graduate-certificate" class="section level2 tabset">
-<h2 class="tabset">Post-Graduate Certificate</h2>
+<div id="niagara-college" class="section level2 tabset">
+<h2 class="tabset">Niagara College</h2>
 <div id="to-5-2019" class="section level3">
 <h3>9-2018 to 5-2019</h3>
 </div>
-<div id="niagara-college" class="section level3">
-<h3>Niagara College</h3>
-<p><a href="NA">Niagara College</a></p>
+<div id="niagara-college-nc" class="section level3">
+<h3>Niagara College (NC)</h3>
+<p>No Website Available</p>
 </div>
 <div id="description-1" class="section level3">
 <h3>Description</h3>
+<p><strong>Post-Graduate Certificate</strong></p>
 <p>Ecosystem Restoration Program</p>
+<p>Trained in planning, implementing, and monitoring ecosystem restoration projects.</p>
+</div>
+<div id="visuals-1" class="section level3">
+<h3>Visuals</h3>
 </div>
 </div>
-<div id="honours-bachelor-of-arts-and-science" class="section level2 tabset">
-<h2 class="tabset">Honour’s Bachelor of Arts and Science</h2>
+<div id="university-of-toronto" class="section level2 tabset">
+<h2 class="tabset">University of Toronto</h2>
 <div id="to-4-2017" class="section level3">
 <h3>9-2013 to 4-2017</h3>
 </div>
-<div id="university-of-toronto" class="section level3">
-<h3>University of Toronto</h3>
-<p><a href="NA">University of Toronto</a></p>
+<div id="university-of-toronto-uoft" class="section level3">
+<h3>University of Toronto (UofT)</h3>
+<p>No Website Available</p>
 </div>
 <div id="description-2" class="section level3">
 <h3>Description</h3>
+<p><strong>Honour’s Bachelor of Arts and Science</strong></p>
 <p>Double majored in Ecology &amp; Evolutionary Biology; Biodiversity &amp; Conservation Biology.</p>
+<p>Studied population and community ecology focusing on the impacts of global change on conservation.</p>
+<p>Graduated with Honours and High Distinction. Completed two independent theses.</p>
+<p>Developed skills in approaching questions scientifically, researching the current state of knowledge on a topic, and organizing groups to solve problems and complete projects.</p>
+</div>
+<div id="visuals-2" class="section level3">
+<h3>Visuals</h3>
 </div>
 </div>
 </div>
 <div id="employment" class="section level1">
-<h1>Employment</h1>
-<div id="research-assistant" class="section level2 tabset">
-<h2 class="tabset">Research Assistant</h2>
+<h1><strong>Employment</strong></h1>
+<div id="heritage-saskatchewan" class="section level2 tabset">
+<h2 class="tabset">Heritage Saskatchewan</h2>
 <div id="to-4-2021" class="section level3">
 <h3>1-2021 to 4-2021</h3>
 </div>
-<div id="heritage-saskatchewan" class="section level3">
-<h3>Heritage Saskatchewan</h3>
-<p><a href="NA">Heritage Saskatchewan</a></p>
+<div id="heritage-saskatchewan-hs" class="section level3">
+<h3>Heritage Saskatchewan (HS)</h3>
+<p>No Website Available</p>
 </div>
 <div id="description-3" class="section level3">
 <h3>Description</h3>
+<p><strong>Research Assistant</strong></p>
 <p>NA</p>
 </div>
+<div id="visuals-3" class="section level3">
+<h3>Visuals</h3>
 </div>
-<div id="conservation-researcher" class="section level2 tabset">
-<h2 class="tabset">Conservation Researcher</h2>
+</div>
+<div id="nature-conservancy-canada" class="section level2 tabset">
+<h2 class="tabset">Nature Conservancy Canada</h2>
 <div id="to-8-2020" class="section level3">
 <h3>7-2020 to 8-2020</h3>
 </div>
-<div id="nature-conservancy-canada" class="section level3">
-<h3>Nature Conservancy Canada</h3>
-<p><a href="NA">Nature Conservancy Canada</a></p>
+<div id="nature-conservancy-canada-ncc" class="section level3">
+<h3>Nature Conservancy Canada (NCC)</h3>
+<p>No Website Available</p>
 </div>
 <div id="description-4" class="section level3">
 <h3>Description</h3>
+<p><strong>Conservation Researcher</strong></p>
 <p>Conducted vegetation and bird surveys on NCC properties in preparation for master’s thesis.</p>
 </div>
+<div id="visuals-4" class="section level3">
+<h3>Visuals</h3>
 </div>
-<div id="natural-area-assistant---waterton" class="section level2 tabset">
-<h2 class="tabset">Natural Area Assistant - Waterton</h2>
+</div>
+<div id="nature-conservancy-canada-1" class="section level2 tabset">
+<h2 class="tabset">Nature Conservancy Canada</h2>
 <div id="to-6-2020" class="section level3">
 <h3>5-2019 to 6-2020</h3>
 </div>
-<div id="nature-conservancy-canada-1" class="section level3">
-<h3>Nature Conservancy Canada</h3>
-<p><a href="NA">Nature Conservancy Canada</a></p>
+<div id="nature-conservancy-canada-ncc-1" class="section level3">
+<h3>Nature Conservancy Canada (NCC)</h3>
+<p>No Website Available</p>
 </div>
 <div id="description-5" class="section level3">
 <h3>Description</h3>
+<p><strong>Natural Area Assistant - Waterton</strong></p>
 <p>Monitored NCC owned properties and conservation easements in the Waterton Park Front Area.</p>
+<p>Mapped anthropogenic features, invasive species occurrence, and assessed conservation success through various indicators. Prepared annual monitoring reports including recommendations for future stewardship efforts. Analyzed aerial imagery for discrepancies between monitoring visits. Liaised with property owners and grazing lease holders. Attended and led events in fence removal, invasive species management, river corridor restoration, and organization operations.</p>
+<p>Adjusted to working in a different culture and biota over a short period of time.</p>
+</div>
+<div id="visuals-5" class="section level3">
+<h3>Visuals</h3>
 </div>
 </div>
-<div id="athletics-and-recreation-centre-staff" class="section level2 tabset">
-<h2 class="tabset">Athletics and Recreation Centre Staff</h2>
+<div id="niagara-college-1" class="section level2 tabset">
+<h2 class="tabset">Niagara College</h2>
 <div id="to-5-2019-1" class="section level3">
 <h3>11-2018 to 5-2019</h3>
 </div>
-<div id="niagara-college-1" class="section level3">
-<h3>Niagara College</h3>
-<p><a href="NA">Niagara College</a></p>
+<div id="niagara-college-nc-1" class="section level3">
+<h3>Niagara College (NC)</h3>
+<p>No Website Available</p>
 </div>
 <div id="description-6" class="section level3">
 <h3>Description</h3>
+<p><strong>Athletics and Recreation Centre Staff</strong></p>
 <p>Fitness centre general worker.</p>
+<p>Serviced, maintained and cleaned fitness equipment. Greeted and registered participants.</p>
+</div>
+<div id="visuals-6" class="section level3">
+<h3>Visuals</h3>
 </div>
 </div>
-<div id="ecological-program-developer" class="section level2 tabset">
-<h2 class="tabset">Ecological Program Developer</h2>
+<div id="earthbound-kids" class="section level2 tabset">
+<h2 class="tabset">Earthbound Kids</h2>
 <div id="to-9-2018" class="section level3">
 <h3>7-2018 to 9-2018</h3>
 </div>
-<div id="earthbound-kids" class="section level3">
+<div id="earthbound-kids-1" class="section level3">
 <h3>Earthbound Kids</h3>
-<p><a href="NA">Earthbound Kids</a></p>
+<p>No Website Available</p>
 </div>
 <div id="description-7" class="section level3">
 <h3>Description</h3>
+<p><strong>Ecological Program Developer</strong></p>
 <p>Designed and led “Small Animals” interactive education program for students aged 4-16.</p>
+<p>Demonstrated live mammal handling, bird surveying, herpetofauna identification, and sampling of both aquatic and terrestrial invertebrates.</p>
+<p>Convinced more than 100 children (and adults) that “Small Animals” included ‘bugs’: not just furry animals. Awarded “Programmer of the Year” for dedication to participant experience and creation of novel educational demonstrations and materials.</p>
+</div>
+<div id="visuals-7" class="section level3">
+<h3>Visuals</h3>
 </div>
 </div>
-<div id="tree-farm-hand" class="section level2 tabset">
-<h2 class="tabset">Tree Farm Hand</h2>
+<div id="earthbound-trees" class="section level2 tabset">
+<h2 class="tabset">Earthbound Trees</h2>
 <div id="to-7-2018" class="section level3">
 <h3>5-2018 to 7-2018</h3>
 </div>
-<div id="earthbound-trees" class="section level3">
+<div id="earthbound-trees-1" class="section level3">
 <h3>Earthbound Trees</h3>
-<p><a href="NA">Earthbound Trees</a></p>
+<p>No Website Available</p>
 </div>
 <div id="description-8" class="section level3">
 <h3>Description</h3>
+<p><strong>Tree Farm Hand</strong></p>
 <p>Assisted in tasks related to the management of a 640 acre small-scale native tree farm.</p>
+<p>Planted, monitored, and maintained bare-root, container, and root-balled trees. Mechanically and chemically managed invasive plants. Inventoried &gt;1000 trees on property and performed tree health assessments. Loaded/unloaded flatbed crane trucks. Drove pick-up trucks off-road and with trailers. Performed landscape maintenance using small tractors. Set-up water pumps/ irrigation systems. Built cedar post fences. Created and maintained trails.</p>
+<p>Learned the necessity of good tools, boots, gloves, and waterproofing.</p>
+</div>
+<div id="visuals-8" class="section level3">
+<h3>Visuals</h3>
 </div>
 </div>
-<div id="math-and-science-instructor" class="section level2 tabset">
-<h2 class="tabset">Math and Science Instructor</h2>
+<div id="oxford-learning-centres-inc." class="section level2 tabset">
+<h2 class="tabset">Oxford Learning Centres Inc. </h2>
 <div id="to-5-2018" class="section level3">
 <h3>9-2017 to 5-2018</h3>
 </div>
-<div id="oxford-learning-centres-inc." class="section level3">
+<div id="oxford-learning-centres-inc.-1" class="section level3">
 <h3>Oxford Learning Centres Inc. </h3>
-<p><a href="NA">Oxford Learning Centres Inc.</a></p>
+<p>No Website Available</p>
 </div>
 <div id="description-9" class="section level3">
 <h3>Description</h3>
+<p><strong>Math and Science Instructor</strong></p>
 <p>Instructor for groups of 3 students aged 8 to 18 focusing on math and science content, but also including English, history, and learning strategies.</p>
+<p>Designed and implemented curriculum supplementary material. Created educational resources for varied subject matter.</p>
+<p>Balanced the needs of diverse student backgrounds in a time-sensitive environment.</p>
+</div>
+<div id="visuals-9" class="section level3">
+<h3>Visuals</h3>
 </div>
 </div>
-<div id="uoft-medstores-staff" class="section level2 tabset">
-<h2 class="tabset">UofT MedStores Staff</h2>
+<div id="university-of-toronto-1" class="section level2 tabset">
+<h2 class="tabset">University of Toronto</h2>
 <div id="to-6-2017" class="section level3">
 <h3>10-2016 to 6-2017</h3>
 </div>
-<div id="university-of-toronto-1" class="section level3">
-<h3>University of Toronto</h3>
-<p><a href="NA">University of Toronto</a></p>
+<div id="university-of-toronto-uoft-1" class="section level3">
+<h3>University of Toronto (UofT)</h3>
+<p>No Website Available</p>
 </div>
 <div id="description-10" class="section level3">
 <h3>Description</h3>
+<p><strong>UofT MedStores Staff</strong></p>
 <p>Staff in a retail operation servicing universities and hospitals with laboratory and medical supplies.</p>
+<p>Assisted customers with purchases through in depth knowledge of stock. Organized and maintained warehouse stocking.</p>
+<p>Received training in safe use and handling of liquid nitrogen.</p>
+</div>
+<div id="visuals-10" class="section level3">
+<h3>Visuals</h3>
 </div>
 </div>
-<div id="scientific-researcher-population-and-community-ecology" class="section level2 tabset">
-<h2 class="tabset">Scientific Researcher: Population and Community Ecology</h2>
+<div id="university-of-toronto-2" class="section level2 tabset">
+<h2 class="tabset">University of Toronto</h2>
 <div id="to-1-2018" class="section level3">
 <h3>5-2015 to 1-2018</h3>
 </div>
-<div id="university-of-toronto-2" class="section level3">
-<h3>University of Toronto</h3>
-<p><a href="NA">University of Toronto</a></p>
+<div id="university-of-toronto-uoft-2" class="section level3">
+<h3>University of Toronto (UofT)</h3>
+<p>No Website Available</p>
 </div>
 <div id="description-11" class="section level3">
 <h3>Description</h3>
+<p><strong>Scientific Researcher: Population and Community Ecology</strong></p>
 <p>Completed two independent undergraduate theses and a year long laboratory contract.</p>
+<p>Conducted scientific literature reviews and experiments.</p>
+<p>Presented results at three scientific conferences. Awarded two undergraduate student research awards (USRAs).</p>
+<p>Developed skills in experimental design, adapting to changing conditions, and admitting mistakes. Distinguished between times to ‘figure it out’ and times to ‘ask for help’.</p>
+</div>
+<div id="visuals-11" class="section level3">
+<h3>Visuals</h3>
 </div>
 </div>
-<div id="service-technician-health-and-safety-inspector" class="section level2 tabset">
-<h2 class="tabset">Service Technician/ Health and Safety Inspector</h2>
+<div id="mbm-installations-inc." class="section level2 tabset">
+<h2 class="tabset">MBM Installations Inc. </h2>
 <div id="to-9-2016" class="section level3">
 <h3>1-2013 to 9-2016</h3>
 </div>
-<div id="mbm-installations-inc." class="section level3">
-<h3>MBM Installations Inc. </h3>
-<p><a href="NA">MBM Installations Inc.</a></p>
+<div id="mbm-installations-inc.-mbm" class="section level3">
+<h3>MBM Installations Inc. (MBM)</h3>
+<p>No Website Available</p>
 </div>
 <div id="description-12" class="section level3">
 <h3>Description</h3>
+<p><strong>Service Technician/ Health and Safety Inspector</strong></p>
 <p>Serviced and inspected physical education equipment, operable walls, and telescopic seating.</p>
+<p>Worked in general mechanics with power tools, saws, and aerial work platforms. Drove pick-up trucks and work vans with trailer attachments. Hired and managed employees. Completed inspections for industry health and safety standards.</p>
+<p>Communicated complex issues to clients with less familiarity. Coordinated inspections of over 200 sites over 4-month periods through scheduling with staff and clients.</p>
+</div>
+<div id="visuals-12" class="section level3">
+<h3>Visuals</h3>
 </div>
 </div>
-<div id="line-kitchen-staff" class="section level2 tabset">
-<h2 class="tabset">Line Kitchen Staff</h2>
+<div id="various-restaurants" class="section level2 tabset">
+<h2 class="tabset">Various Restaurants</h2>
 <div id="to-1-2011" class="section level3">
 <h3>1-2007 to 1-2011</h3>
 </div>
-<div id="various-restaurants" class="section level3">
+<div id="various-restaurants-1" class="section level3">
 <h3>Various Restaurants</h3>
-<p><a href="NA">Various Restaurants</a></p>
+<p>No Website Available</p>
 </div>
 <div id="description-13" class="section level3">
 <h3>Description</h3>
+<p><strong>Line Kitchen Staff</strong></p>
 <p>Part-time staff in 4 restaurants during high school</p>
+<p>Prepared food and cleaned kitchens. Interacted with customers and clients.</p>
+<p>Learned to adapt to time sensitive situations and maintain professionality in strenuous situations from a young age.</p>
+</div>
+<div id="visuals-13" class="section level3">
+<h3>Visuals</h3>
 </div>
 </div>
 </div>
 <div id="projects" class="section level1">
-<h1>Projects</h1>
-<div id="na" class="section level2 tabset">
-<h2 class="tabset">NA</h2>
-<div id="na-na-to-na-na" class="section level3">
-<h3>NA-NA to NA-NA</h3>
+<h1><strong>Projects</strong></h1>
+<div id="range-and-riparian-health-database" class="section level2 tabset">
+<h2 class="tabset">Range and Riparian Health Database</h2>
+<div id="to-6-2020-1" class="section level3">
+<h3>1-2020 to 6-2020</h3>
 </div>
-<div id="na-1" class="section level3">
-<h3>NA</h3>
-<p><a href="NA">NA</a></p>
+<div id="nature-conservancy-canada-ncc-2" class="section level3">
+<h3>Nature Conservancy Canada (NCC)</h3>
+<p>No Website Available</p>
 </div>
 <div id="description-14" class="section level3">
 <h3>Description</h3>
-<p>NA</p>
+<p><strong>Range and Riparian Health Database</strong></p>
+<p>Created and analyzed database connecting historical and ongoing range and riparian health assessments.</p>
+<p>Conglomerated nearly 20 years of reports across over 10,000 hectares of NCC property into a living excel database. Adapted range health polygons into analyzable format. Created automated analysis and reporting templates with table and figure outputs through R Statistical Programming.</p>
+<p>Created functional database to house historical data, input continuing assessment data, and automated analysis the conglomerated data to facilitate reporting.</p>
+<p>Scanned technical reports for important information. Standardized input of various report formats. Improved R-coding skills.</p>
+</div>
+<div id="visuals-14" class="section level3">
+<h3>Visuals</h3>
 </div>
 </div>
-<div id="section" class="section level2 tabset">
-<h2 class="tabset"></h2>
-<div id="to--" class="section level3">
-<h3>- to -</h3>
+<div id="ladybird-biohysical-inventory" class="section level2 tabset">
+<h2 class="tabset">Ladybird Biohysical Inventory</h2>
+<div id="to-6-2020-2" class="section level3">
+<h3>9-2019 to 6-2020</h3>
 </div>
-<div id="section-1" class="section level3">
-<h3></h3>
-<p><a href=""></a></p>
+<div id="environmental-consulting" class="section level3">
+<h3>Environmental Consulting</h3>
+<p>No Website Available</p>
 </div>
 <div id="description-15" class="section level3">
 <h3>Description</h3>
+<p><strong>Ladybird Biohysical Inventory</strong></p>
+<p>Completed biophysical inventory of a 594 acre parcel of reforested land in the Central Kootenays of BC.</p>
+</div>
+<div id="visuals-15" class="section level3">
+<h3>Visuals</h3>
+</div>
+</div>
+<div id="comparing-terrestrial-invertebrate-communities-after-restoration" class="section level2 tabset">
+<h2 class="tabset">Comparing terrestrial invertebrate communities after restoration</h2>
+<div id="to-5-2019-2" class="section level3">
+<h3>9-2018 to 5-2019</h3>
+</div>
+<div id="niagara-college-nc-2" class="section level3">
+<h3>Niagara College (NC)</h3>
+<p>No Website Available</p>
+</div>
+<div id="description-16" class="section level3">
+<h3>Description</h3>
+<p><strong>Comparing terrestrial invertebrate communities after restoration</strong></p>
+<p>Compared terrestrial arthropod communities wetlands at different stages of ecological restoration.</p>
+</div>
+<div id="visuals-16" class="section level3">
+<h3>Visuals</h3>
+</div>
+</div>
+<div id="niagara-river-invasive-species-management" class="section level2 tabset">
+<h2 class="tabset">Niagara River Invasive Species Management</h2>
+<div id="to-5-2019-3" class="section level3">
+<h3>9-2018 to 5-2019</h3>
+</div>
+<div id="niagara-college-nc-3" class="section level3">
+<h3>Niagara College (NC)</h3>
+<p>No Website Available</p>
+</div>
+<div id="description-17" class="section level3">
+<h3>Description</h3>
+<p><strong>Niagara River Invasive Species Management</strong></p>
+<p>Mapped and prioritized invasive species occurrences on an 11 km stretch of the Niagara River for the Niagara Parks Commission.</p>
+</div>
+<div id="visuals-17" class="section level3">
+<h3>Visuals</h3>
+</div>
+</div>
+<div id="measuring-success-of-understory-turf-transplants-in-reclaimed-forests" class="section level2 tabset">
+<h2 class="tabset">Measuring success of understory turf transplants in reclaimed forests</h2>
+<div id="to-8-2016" class="section level3">
+<h3>8-2016 to 8-2016</h3>
+</div>
+<div id="laurentian-university" class="section level3">
+<h3>Laurentian University</h3>
+<p>No Website Available</p>
+</div>
+<div id="description-18" class="section level3">
+<h3>Description</h3>
+<p><strong>Measuring success of understory turf transplants in reclaimed forests</strong></p>
+<p>NA</p>
+</div>
+<div id="visuals-18" class="section level3">
+<h3>Visuals</h3>
+</div>
+</div>
+<div id="tritrophic-interactions-on-an-aphid-farm" class="section level2 tabset">
+<h2 class="tabset">Tritrophic Interactions on an Aphid Farm</h2>
+<div id="to-1-1900" class="section level3">
+<h3>1-1900 to 1-1900</h3>
+</div>
+<div id="university-of-toronto-3" class="section level3">
+<h3>University of Toronto</h3>
+<p>No Website Available</p>
+</div>
+<div id="description-19" class="section level3">
+<h3>Description</h3>
+<p><strong>Tritrophic Interactions on an Aphid Farm</strong></p>
+<p>NA</p>
+</div>
+<div id="visuals-19" class="section level3">
+<h3>Visuals</h3>
+<p><img src="images/aphid_farm_fld3" alt="Test" />.jpg</p>
 </div>
 </div>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -532,6 +774,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

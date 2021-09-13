@@ -1,0 +1,38 @@
+---
+title: "Contact"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<style type="text/css">
+.title {
+  display: none;
+}
+
+#getting-started img {
+  margin-right: 10px;
+}
+
+</style>
+
+<div class="row" style="padding-top: 30px;">
+<div class="col-sm-6">
+
+## Zachary M. Moore
+Ontario, Canada
+
+e-mail: zacharymilosmoore "at" gmail.com
+
+[GitHub](github.com/zacharymilosmoore)
+
+[LinkedIn](linkedin.com/in/zacharymilosmoore)
+
+[ResearchGate](www.researchgate.net/profile/Zachary-Moore-18)
+
+[Fiverr](fiverr.com/zacharymmoore)
+
+[UpWork](www.upwork.com/freelancers/~019740478890543483)
+

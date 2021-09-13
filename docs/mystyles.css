@@ -20,3 +20,11 @@ body {
   padding-left: 35px;
   margin-left: 5px;
 }
+
+.header-card {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0);
+    color: black;
+}

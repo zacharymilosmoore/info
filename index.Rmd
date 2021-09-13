@@ -37,6 +37,6 @@ I am an emerging environmental professional specializing in ecology, ecological 
 </div>
 <div class="col-sm-6">
 
-![](images/headshot.jpg){width=75%}
+![](visuals/headshot.jpg){width=75%}
 </a>
 </div>

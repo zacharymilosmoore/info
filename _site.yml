@@ -6,6 +6,8 @@ navbar:
       href: index.html
     - text: "CV"
       href: employment.html
+    - text: "Contact"
+      href: contact.html
 
 
 output:

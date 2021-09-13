@@ -21,7 +21,7 @@ library(glue)
 
 ```{r, echo=FALSE,results="asis"}
 
-cv<-read_excel("cv_data/cv_zmm.xlsx",sheet="CV")
+cv<-read_excel("cv_zmm.xlsx",sheet="CV")
 categories<-c("Education","Employment","Projects")
 
 for (c in categories){
@@ -49,10 +49,26 @@ for (c in categories){
       org.link<-if(is.na(entry$Org_Link)==T) {"No Website Available"} else {
         paste("[",org,"]","(",entry$Org_Link,")",sep="")}
       
-      visuals<-paste(
+      V1<-paste(
         ifelse(is.na(entry$V1)==T,"",
-               paste("![",entry$V1_Desc,"]","(images/",entry$V1,")",entry$V1_Type,sep="")),sep="")
-    
+               paste("![",entry$V1_Desc,"]","(visuals/",entry$V1,entry$V1_Type,")",sep="")),sep="")
+      V2<-paste(
+        ifelse(is.na(entry$V2)==T,"",
+               paste("![",entry$V2_Desc,"]","(visuals/",entry$V2,entry$V2_Type,")",sep="")),sep="")
+      V3<-paste(
+        ifelse(is.na(entry$V3)==T,"",
+               paste("![",entry$V3_Desc,"]","(visuals/",entry$V3,entry$V3_Type,")",sep="")),sep="")
+      
+      L1<-paste(
+        ifelse(is.na(entry$L1)==T,"No Website Available",
+               paste("[",entry$L1_Desc,"](",entry$L1,")",sep="")),sep="")
+      L2<-paste(
+        ifelse(is.na(entry$L2)==T,"",
+               paste("[",entry$L2_Desc,"](",entry$L2,")",sep="")),sep="")
+      L3<-paste(
+        ifelse(is.na(entry$L3)==T,"",
+               paste("[",entry$L3_Desc,"](",entry$L3,")",sep="")),sep="")
+      
     cat("##", (if(c=="Projects"){entry$Title} else {entry$Organization}), 
         "{.tabset}", "\n","\n")
 
@@ -65,11 +81,22 @@ for (c in categories){
       
 
     cat("###", "Visuals", "\n", "\n")
-      cat(visuals,"\n","\n")
+      cat(V1,V2,V3,"\n","\n")
       
+    cat("###", "Links", "\n", "\n")
+      cat(L1,L2,L3,"\n","\n")
   }
   cat("\n")
 }
 
 ```
+
+</div>
+<div class="header-card">
+Last Updated: 
+```{r,results="asis",echo=F} 
+
+cat(format(Sys.time(),"%c"))
+```
+</div>
 

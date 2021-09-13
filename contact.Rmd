@@ -1,5 +1,5 @@
 ---
-title: "**Contact**"
+title: "Contact"
 output: html_document
 ---
 
@@ -21,18 +21,18 @@ knitr::opts_chunk$set(echo = TRUE)
 <div class="row" style="padding-top: 30px;">
 <div class="col-sm-6">
 
-## Zachary M. Moore
+## **Zachary M. Moore**
 Ontario, Canada
 
 e-mail: zacharymilosmoore "at" gmail.com
 
-[GitHub](https://github.com/zacharymilosmoore)
+[GitHub](https://www.github.com/zacharymilosmoore)
 
-[LinkedIn](https://linkedin.com/in/zacharymilosmoore)
+[LinkedIn](https://www.linkedin.com/in/zacharymilosmoore)
 
 [ResearchGate](https://www.researchgate.net/profile/Zachary-Moore-18)
 
-[Fiverr](https://fiverr.com/zacharymmoore)
+[Fiverr](https://www.fiverr.com/zacharymmoore)
 
 [UpWork](https://www.upwork.com/freelancers/~019740478890543483)
 

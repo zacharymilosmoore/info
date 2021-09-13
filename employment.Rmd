@@ -73,11 +73,11 @@ for (c in categories){
         "{.tabset}", "\n","\n")
 
     cat("###", timing,"\n","\n")
-      cat(entry$Time, entry$Time_Unit, "\n", "\n")
-    
+      cat(round(entry$Time,digits=0), entry$Time_Unit, "\n", "\n")
+      
     cat("###", org,"\n","\n")
       cat(org.link,"\n","\n")
-
+      
     cat("###", "Description", "\n","\n")
       cat(description, "\n","\n")
       

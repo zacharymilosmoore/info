@@ -46,7 +46,7 @@ for (c in categories){
       org<-if(is.na(entry$Org_Acr)==T) {entry$Organization} else {
         paste(entry$Organization, " (", entry$Org_Acr,")",sep="")}
       
-      org.link<-if(is.na(entry$Org_Link)==T) {"No Website Available"} else {
+      org.link<-if(is.na(entry$Org_Link)==T) {""} else {
         paste("[",org,"]","(",entry$Org_Link,")",sep="")}
       
       V1<-paste(
@@ -60,7 +60,7 @@ for (c in categories){
                paste("![",entry$V3_Desc,"]","(visuals/",entry$V3,entry$V3_Type,")",sep="")),sep="")
       
       L1<-paste(
-        ifelse(is.na(entry$L1)==T,"No Website Available",
+        ifelse(is.na(entry$L1)==T,"",
                paste("[",entry$L1_Desc,"](",entry$L1,")",sep="")),sep="")
       L2<-paste(
         ifelse(is.na(entry$L2)==T,"",
@@ -73,8 +73,10 @@ for (c in categories){
         "{.tabset}", "\n","\n")
 
     cat("###", timing,"\n","\n")
+      cat(entry$Time, entry$Time_Unit, "\n", "\n")
+    
     cat("###", org,"\n","\n")
-        cat(org.link,"\n","\n")
+      cat(org.link,"\n","\n")
 
     cat("###", "Description", "\n","\n")
       cat(description, "\n","\n")

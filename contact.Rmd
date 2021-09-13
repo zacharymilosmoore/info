@@ -1,5 +1,5 @@
 ---
-title: "Contact"
+title: "**Contact**"
 output: html_document
 ---
 
@@ -26,13 +26,13 @@ Ontario, Canada
 
 e-mail: zacharymilosmoore "at" gmail.com
 
-[GitHub](github.com/zacharymilosmoore)
+[GitHub](https://github.com/zacharymilosmoore)
 
-[LinkedIn](linkedin.com/in/zacharymilosmoore)
+[LinkedIn](https://linkedin.com/in/zacharymilosmoore)
 
-[ResearchGate](www.researchgate.net/profile/Zachary-Moore-18)
+[ResearchGate](https://www.researchgate.net/profile/Zachary-Moore-18)
 
-[Fiverr](fiverr.com/zacharymmoore)
+[Fiverr](https://fiverr.com/zacharymmoore)
 
-[UpWork](www.upwork.com/freelancers/~019740478890543483)
+[UpWork](https://www.upwork.com/freelancers/~019740478890543483)
 

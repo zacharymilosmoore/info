@@ -37,6 +37,6 @@ I am an environmental professional specializing in ecology, ecological restorati
 </div>
 <div class="col-sm-6">
 
-![](visuals/headshot.jpg){width=75%}
+![](visuals/site_headshot.jpg){width=850pxl,height=1100pxl}
 </a>
 </div>

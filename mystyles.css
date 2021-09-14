@@ -8,12 +8,12 @@ body {
   background-position: top;
   background-size: cover;
   background-attachment: fixed;
-  background-image: url(visuals/background.jpg);
+  background-image: url(visuals/site_background.jpg);
   background-repeat: no-repeat;
 }
 
 .navbar-brand {
-  background-image: url(visuals/tree.png);
+  background-image: url(visuals/site_tree.png);
   background-size: 30px;
   background-repeat: no-repeat;
   background-position: left;

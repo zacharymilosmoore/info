@@ -24,10 +24,15 @@ body {
 }
 
 .header {
-  padding: 50px;
+  padding: 30px;
   text-align: center;
   background: white;
   color: black;
   font-size: 14px;
 }
 
+.contact {
+  text-align: center;
+  background: white;
+  padding: 30px;
+}

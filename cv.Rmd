@@ -105,8 +105,10 @@ for (c in categories){
           cat(L1,L2,L3,"\n","\n")
       }
       
-      #Empty Active Tab to hide all   
+      #Empty Active Tab with Title to hide all   
       cat("###", "-","{.active}", "\n","\n")
+        cat("**",entry$Title,"**", "\n","\n",sep="")
+    
 
       #Add spaces between entries
       cat("\n","<br>","\n","\n")
@@ -125,6 +127,7 @@ Last Updated:
 cat(format(Sys.time(),"%c"))
 ```
 [GitHub Source](https://github.com/zacharymilosmoore/zacharymilosmoore.github.io)
+
 </div>
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
 </div>

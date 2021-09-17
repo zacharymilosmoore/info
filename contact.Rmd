@@ -15,23 +15,54 @@ library(icons)
 }
 
 </style>
-
-<div class="row" style="padding-top: 30px; padding-left: 100px; ">
+<div class = "header">
 
 ## **Zachary M. Moore**
 Ontario, Canada
 
 e-mail: zacharymilosmoore@gmail.com
 
+</div>
+<div class = "contact">
+
+:::: {style="display: center;"}
+
+::: {}
+```{r echo = F}
+icon_style(fontawesome$brands$github,scale=5)
+```
 [GitHub](https://www.github.com/zacharymilosmoore)
+:::
 
+::: {}
+```{r echo = F}
+icon_style(fontawesome$brands$linkedin,scale=5,colour="blue")
+```
 [LinkedIn](https://www.linkedin.com/in/zacharymilosmoore)
+:::
 
-[ResearchGate](https://www.researchgate.net/profile/Zachary-Moore-18)
+::: {}
+```{r echo = F}
+icon_style(fontawesome$brands$researchgate,scale=5)
+```
+[Research Gate](https://www.researchgate.net/profile/Zachary-Moore-18)
+:::
 
-[Fiverr](https://www.fiverr.com/zacharymmoore)
+::: {}
+```{r echo = F}
+icon_style(simple_icons$fiverr,scale=5)
+```
+[fiverr](https://www.fiverr.com/zacharymmoore)
+:::
 
+::: {}
+```{r echo = F}
+icon_style(simple_icons$upwork,scale=5)
+```
 [UpWork](https://www.upwork.com/freelancers/~019740478890543483)
+:::
+
+::::
 
 </div>
 <div class="header">

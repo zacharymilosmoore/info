@@ -9,8 +9,7 @@ output: html_document
 }
 
 #getting-started img {
-  margin-right: 10px;
-}
+  margin-right: 10px}
 
 </style>
 
@@ -39,4 +38,13 @@ I am an environmental professional specializing in ecology, ecological restorati
 
 ![](visuals/site_headshot.jpg){width=850pxl,height=1100pxl}
 </a>
+</div>
+<div class="header">
+
+Last Updated: 
+```{r,results="asis",echo=F} 
+
+cat(format(Sys.time(),"%c"))
+```
+[GitHub Source](https://github.com/zacharymilosmoore/zacharymilosmoore.github.io)
 </div>

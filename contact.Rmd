@@ -5,6 +5,8 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(icons)
 ```
 
 <style type="text/css">
@@ -12,19 +14,14 @@ knitr::opts_chunk$set(echo = TRUE)
   display: none;
 }
 
-#getting-started img {
-  margin-right: 10px;
-}
-
 </style>
 
-<div class="row" style="padding-top: 30px;">
-<div class="col-sm-6">
+<div class="row" style="padding-top: 30px; padding-left: 100px; ">
 
 ## **Zachary M. Moore**
 Ontario, Canada
 
-e-mail: zacharymilosmoore "at" gmail.com
+e-mail: zacharymilosmoore@gmail.com
 
 [GitHub](https://www.github.com/zacharymilosmoore)
 
@@ -36,3 +33,13 @@ e-mail: zacharymilosmoore "at" gmail.com
 
 [UpWork](https://www.upwork.com/freelancers/~019740478890543483)
 
+</div>
+<div class="header">
+
+Last Updated: 
+```{r,results="asis",echo=F} 
+
+cat(format(Sys.time(),"%c"))
+```
+[GitHub Source](https://github.com/zacharymilosmoore/zacharymilosmoore.github.io)
+</div>

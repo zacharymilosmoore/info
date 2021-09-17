@@ -1,15 +1,17 @@
 .container-fluid.main-container {
   background-color: #ffffff !important;
-  padding-bottom: 20px;
+  padding-bottom: 5px;
 }
 
 body {
   font-size: 16px;
+  line-height: 1.5em ;
   background-position: top;
   background-size: cover;
   background-attachment: fixed;
   background-image: url(visuals/site_background.jpg);
   background-repeat: no-repeat;
+  margin-bottom: 0px;
 }
 
 .navbar-brand {
@@ -21,10 +23,11 @@ body {
   margin-left: 5px;
 }
 
-.header-card {
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0);
-    color: black;
+.header {
+  padding: 50px;
+  text-align: center;
+  background: white;
+  color: black;
+  font-size: 14px;
 }
+

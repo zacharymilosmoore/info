@@ -25,7 +25,7 @@ e-mail: zacharymilosmoore@gmail.com
 </div>
 <div class = "contact">
 
-:::: {style="display: center;"}
+:::: {style="display: flex;"}
 
 ::: {}
 ```{r echo = F}

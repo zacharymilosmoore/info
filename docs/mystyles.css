@@ -37,3 +37,8 @@ body {
   padding: 30px;
   padding-left: 250px;
 }
+
+table, th, td {
+  border: 0px solid black;
+  object-position: center;
+}

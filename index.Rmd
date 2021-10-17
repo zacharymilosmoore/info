@@ -2,6 +2,7 @@
 title: "Zachary M. Moore"
 output: html_document
 ---
+<link rel="shortcut icon" href="images/site_logo_white.png" />
 
 <style type="text/css">
 .title {

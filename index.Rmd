@@ -19,7 +19,7 @@ output: html_document
 
 # **Home**
 
-I am an environmental professional specializing in ecology, ecological restoration, and natural resources management. I am currently studying at the University of Manitoba in conjunction with the [Nature Conservancy of Canada](https://www.natureconservancy.ca/en/) as a [Weston Family Conservation Science Fellow](https://www.natureconservancy.ca/en/what-we-do/conservation-research/weston-fellowship.html), and my research focuses on grassland bird conservation on private conservation rangelands in southwestern Alberta, Canada. 
+I am an environmental professional specializing in ecology, ecological restoration, and natural resources management. I am currently studying at the University of Manitoba in conjunction with the [Nature Conservancy of Canada](https://www.natureconservancy.ca/en/) as a [Conservation Science Fellow](https://www.natureconservancy.ca/en/what-we-do/conservation-research/weston-fellowship.html), and my research focuses on grassland bird conservation on private conservation rangelands in southwestern Alberta, Canada. 
 
 
 ## My Specialities

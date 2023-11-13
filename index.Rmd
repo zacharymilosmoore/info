@@ -39,7 +39,7 @@ Currently, I work for [Wildlife Conservation Society Canada](https://www.wcs.org
 </div>
 <div class="col-sm-6">
 
-![](visuals/site_headshot.jpg){width=850pxl,height=1100pxl}
+![](media/site_headshot.png)
 </a>
 </div>
 <div class="header">

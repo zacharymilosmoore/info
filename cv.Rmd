@@ -65,21 +65,21 @@ for (c in categories){
       M1 <- paste0(
         ifelse(is.na(entry$M1)==T,"",
                paste0("[",entry$M1_Desc,
-                      "](https://zacharymilosmoore.ca/visuals/",
+                      "](https://zacharymilosmoore.ca/media/",
                       entry$M1,entry$M1_Type,")",
                       "\n","\n")))
       
       M2 <- paste0(
         ifelse(is.na(entry$M2)==T,"",
                paste0("[",entry$M2_Desc,
-                      "](https://zacharymilosmoore.ca/visuals/",
+                      "](https://zacharymilosmoore.ca/media/",
                       entry$M2,entry$M2_Type,")",
                       "\n","\n")))
       
       M3 <- paste0(
         ifelse(is.na(entry$M3)==T,"",
                paste0("[",entry$M3_Desc,
-                      "](https://zacharymilosmoore.ca/visuals/",
+                      "](https://zacharymilosmoore.ca/media/",
                       entry$M3,entry$M3_Type,")",
                       "\n","\n")))
       

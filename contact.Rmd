@@ -22,24 +22,23 @@ Ontario, Canada
 
 e-mail: zacharymilosmoore@gmail.com
 
+[iNaturalist](https://inaturalist.ca/people/zacharymilosmoore) |
+[eBird](https://ebird.org/profile/MTYwMzc5NQ/world)
 
 ```{r echo = F}
 icon_style(fontawesome$brands$github,scale=5)
 ```
 [GitHub](https://www.github.com/zacharymilosmoore)
    
-   
 ```{r echo = F}
 icon_style(fontawesome$brands$linkedin,scale=5,colour="blue")
 ```
 [LinkedIn](https://www.linkedin.com/in/zacharymilosmoore)
- 
- 
+
 ```{r echo = F}
 icon_style(fontawesome$brands$researchgate,scale=5)
 ```
 [Research Gate](https://www.researchgate.net/profile/Zachary-Moore-18)
-    
     
 ```{r echo = F}
 icon_style(simple_icons$fiverr,scale=5)

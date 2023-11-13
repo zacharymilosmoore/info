@@ -20,8 +20,10 @@ library(tidyverse)
 ```{r, echo=FALSE,results="asis"}
 
 cv<-read_excel("cv_zmm.xlsx",sheet="CV")
-categories<-c("Education","Accreditations","Projects",
-              "Employment","Volunteering","Awards","Conferences","Certifications")
+categories<-c("Education","Employment","Volunteering","Projects","Conferences",
+              "Certifications","Awards","Accreditations","Publications","Media")
+
+categories2<-c()
 
 for (c in categories){
   cv_sub<-subset(cv,Category==c & CV=="Include")
@@ -59,21 +61,28 @@ for (c in categories){
           
       
                       
-      #Setting up Visuals (if present)  
-      size.mod<-"{width=75%}"
+      #Setting up media (if present)  
+      M1 <- paste0(
+        ifelse(is.na(entry$M1)==T,"",
+               paste0("[",entry$M1_Desc,
+                      "](https://zacharymilosmoore.ca/visuals/",
+                      entry$M1,entry$M1_Type,")",
+                      "\n","\n")))
       
-      V1<-paste(
-        ifelse(is.na(entry$V1)==T,"",
-               paste("![]","(visuals/",entry$V1,entry$V1_Type,")",
-                     size.mod,"\n","\n",entry$V1_Desc,sep="")),sep="")
-      V2<-paste(
-        ifelse(is.na(entry$V2)==T,"",
-               paste("![]","(visuals/",entry$V2,entry$V2_Type,")",
-                     size.mod,"\n","\n",entry$V2_Desc,sep="")),sep="")
-      V3<-paste(
-        ifelse(is.na(entry$V3)==T,"",
-               paste("![]","(visuals/",entry$V3,entry$V3_Type,")",
-                     size.mod,"\n","\n",entry$V3_Desc,sep="")),sep="")
+      M2 <- paste0(
+        ifelse(is.na(entry$M2)==T,"",
+               paste0("[",entry$M2_Desc,
+                      "](https://zacharymilosmoore.ca/visuals/",
+                      entry$M2,entry$M2_Type,")",
+                      "\n","\n")))
+      
+      M3 <- paste0(
+        ifelse(is.na(entry$M3)==T,"",
+               paste0("[",entry$M3_Desc,
+                      "](https://zacharymilosmoore.ca/visuals/",
+                      entry$M3,entry$M3_Type,")",
+                      "\n","\n")))
+      
       
       #Setting up Links (if present)
       
@@ -87,41 +96,110 @@ for (c in categories){
         ifelse(is.na(entry$L3)==T,"",
                paste("[",entry$L3_Desc,"](",entry$L3,")","\n","\n",sep="")),sep="")
       
-    #Printing Entry for Markdown
+    #Printing Entries for Markdown
       
-      if(c%in%c("Projects","Certifications")){
+      if (c %in% c("Projects")){
         cat("##", title.acr,"{.tabset}", "\n","\n")+
-          cat(timing," (",period,") ",location," ","\n","\n",
-              org,"\n","\n",sep="")
+          cat(timing," (",period,") ",location," ","\n","\n",org,"\n","\n",sep="")
         
-      } else {
+        cat("###", "Description", "\n","\n")
+        cat(description, "\n","\n")
+        
+        #Checking for media, add media tab
+        if(M1==""){""} else {
+          cat("###", "Media", "\n", "\n")
+            cat("**",title.acr,"**", "\n","\n",sep="")
+            cat(M1,M2,M3,"\n","\n")
+        }
+        
+        #Checking for links, add links tab
+        if(L1==""){""} else {
+          cat("###", "Links", "\n", "\n")
+            cat("**",title.acr,"**", "\n","\n",sep="")
+            cat(L1,L2,L3,"\n","\n")
+        }
+        
+        #Add and activate empty Tab with Title to hide others   
+        cat("###", "-","{.active}", "\n","\n")
+        cat("**",title.acr,"**", "\n","\n",sep="")
+        
+      } 
+      
+      if (c %in% c("Certifications")){
+        cat("##", title.acr, "\n","\n")+
+          cat(timing," (",period,") ",location," ","\n","\n",org,"\n","\n",sep="")
+      } 
+      
+      if (c %in% c("Media")){ # Just L1
+        cat("###", L1, "\n","\n")
+      }
+      
+      if (c %in% c("Awards","Accreditations")){ 
+        cat("###", org.acr, "-", title.acr, start, "\n","\n")
+      }
+      
+      if (c %in% c("Publications")){ 
+        cat("###", L1, "\n","\n")
+      }
+      
+      if (c %in% c("Conferences")){ # For general tabset entries (Employment, education)
+          
+        cat("##",org.acr,"{.tabset}", "\n","\n")+
+          cat(start," (",period,") ",location," ",org.link,"\n","\n",sep="")
+        
+        cat("###", "Description", "\n","\n")
+        cat(description, "\n","\n")
+        
+        #Checking for media, add media tab
+        if(M1==""){""} else {
+          cat("###", "Media", "\n", "\n")
+            cat("**",title.acr,"**", "\n","\n",sep="")
+            cat(M1,M2,M3,"\n","\n")
+        }
+        
+        #Checking for links, add links tab
+        if(L1==""){""} else {
+          cat("###", "Links", "\n", "\n")
+            cat("**",title.acr,"**", "\n","\n",sep="")
+            cat(L1,L2,L3,"\n","\n")
+        }
+        
+        #Add and activate empty Tab with Title to hide others   
+        cat("###", "-","{.active}", "\n","\n")
+        cat("**",title.acr,"**", "\n","\n",sep="")
+        
+      }
+      
+      if (c %in% c("Employment","Education","Volunteering")){ # For general tabset entries (Employment, education)
           
         cat("##",org.acr,"{.tabset}", "\n","\n")+
           cat(timing," (",period,") ",location," ",org.link,"\n","\n",sep="")
-      }
-  
-      cat("###", "Description", "\n","\n")
+        
+        cat("###", "Description", "\n","\n")
         cat(description, "\n","\n")
         
-      #Checking for visuals
-      if(V1==""){""} else {
-        cat("###", "Visuals", "\n", "\n")
-          cat(V1,V2,V3,"\n","\n")
-      }
-      
-      #Checking for links
-      if(L1==""){""} else {
-        cat("###", "Links", "\n", "\n")
-          cat(L1,L2,L3,"\n","\n")
-      }
-      
-      #Empty Active Tab with Title to hide all   
-      cat("###", "-","{.active}", "\n","\n")
+        #Checking for media, add media tab
+        if(M1==""){""} else {
+          cat("###", "Media", "\n", "\n")
+            cat("**",title.acr,"**", "\n","\n",sep="")
+            cat(M1,M2,M3,"\n","\n")
+        }
+        
+        #Checking for links, add links tab
+        if(L1==""){""} else {
+          cat("###", "Links", "\n", "\n")
+            cat("**",title.acr,"**", "\n","\n",sep="")
+            cat(L1,L2,L3,"\n","\n")
+        }
+        
+        #Add and activate empty Tab with Title to hide others   
+        cat("###", "-","{.active}", "\n","\n")
         cat("**",title.acr,"**", "\n","\n",sep="")
-    
-
-      #Add spaces between entries
-      cat("\n","<br>","\n","\n")
+        
+      }
+      
+    #Add spaces between entries
+    cat("\n","<br>","\n","\n")
 
   }
   cat("\n","<br>","\n","\n")

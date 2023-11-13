@@ -13,8 +13,8 @@
 
 <title>Zachary M. Moore</title>
 
-<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -60,6 +60,7 @@ if (window.hljs) {
 
 
 
+
 <link rel="stylesheet" href="mystyles.css" type="text/css" />
 
 
@@ -84,6 +85,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -141,11 +145,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -174,8 +182,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -183,16 +191,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -236,7 +237,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -284,14 +285,30 @@ $(document).ready(function () {
 <div class="row" style="padding-top: 30px;">
 <div id="home" class="section level1 col-sm-6">
 <h1><strong>Home</strong></h1>
-<p>I am an environmental professional specializing in ecology, ecological restoration, and natural resources management. I am currently studying at the University of Manitoba in conjunction with the <a href="https://www.natureconservancy.ca/en/">Nature Conservancy of Canada</a> as a <a href="https://www.natureconservancy.ca/en/what-we-do/conservation-research/weston-fellowship.html">Conservation Science Fellow</a>, and my research focuses on grassland bird conservation on private conservation rangelands in southwestern Alberta, Canada.</p>
+<p>I am an environmental professional specializing in conservation
+biology, ecology, ecological restoration, and natural resources
+management. I am currently studying at the University of Manitoba in
+conjunction with the <a
+href="https://www.natureconservancy.ca/en/">Nature Conservancy of
+Canada</a> as a <a
+href="https://www.natureconservancy.ca/en/what-we-do/conservation-research/weston-fellowship.html">Conservation
+Science Fellow</a>, and my research focuses on grassland bird
+conservation on private conservation rangelands in southwestern Alberta,
+Canada.</p>
+<p>Currently, I work for <a href="https://www.wcs.org/">Wildlife
+Conservation Society Canada</a> as the <a
+href="https://kbacanada.org/">Regional Key Biodiversity Area (KBA)
+Coordinator for Manitoba</a>, where I create proposals to recognize
+areas that disproportionately important for species-at-risk conservation
+for use in future land use planning and conservation.</p>
 <div id="my-specialities" class="section level2">
 <h2>My Specialities</h2>
 <ul>
 <li>Scientific Study Design, Implementation, and Reporting</li>
 <li>Ecological Monitoring, Mapping, and Assessment</li>
 <li>Ecological Restoration Planning, Implementation, and Assessment</li>
-<li>Data Analysis Using R Statistical Programming and Geographic Information Systems (GIS)</li>
+<li>Data Analysis Using R Statistical Programming and Geographic
+Information Systems (GIS)</li>
 <li>Database Design Using Microsoft Excel, Access</li>
 <li>Technical Reporting</li>
 <li>Non-profit Governance and Administration</li>
@@ -303,7 +320,9 @@ $(document).ready(function () {
 <p><img src="visuals/site_headshot.jpg" /> </a></p>
 </div>
 <div class="header">
-<p>Last Updated: Thu Jan 13 11:06:29 2022 <a href="https://github.com/zacharymilosmoore/zacharymilosmoore.github.io">GitHub Source</a></p>
+<p>Last Updated: Mon Nov 13 13:07:34 2023 <a
+href="https://github.com/zacharymilosmoore/zacharymilosmoore.github.io">GitHub
+Source</a></p>
 </div>
 
 

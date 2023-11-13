@@ -13,8 +13,8 @@
 
 <title>CV</title>
 
-<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -63,6 +63,7 @@ if (window.hljs) {
 
 
 
+
 <link rel="stylesheet" href="mystyles.css" type="text/css" />
 
 
@@ -87,6 +88,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -144,11 +148,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -177,8 +185,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -186,16 +194,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -312,7 +313,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -347,26 +348,30 @@ div.tocify {
 </div>
 
 
-<div class="row" style="padding-top: 30px;  padding-right: 100px; padding-left: 30px; ">
+<div class="row"
+style="padding-top: 30px;  padding-right: 100px; padding-left: 30px; ">
 <div id="education" class="section level1">
 <h1><strong>Education</strong></h1>
 <div id="university-of-manitoba-uofm" class="section level2 tabset">
 <h2 class="tabset">University of Manitoba (UofM)</h2>
-<p>9-2020 to 1-2022 (1 Year) Winnipeg, MB <a href="https://www.umanitoba.ca/">Website</a></p>
+<p>9-2020 to 11-2023 (3 Years) Winnipeg, MB <a
+href="https://www.umanitoba.ca/">Website</a></p>
 <div id="description" class="section level3">
 <h3>Description</h3>
 <p><strong>Master’s of Natural Resources Management (MNRM)</strong></p>
 <ul>
-<li><p>Two-year masters program involving a thesis, course work, and public facing presentations.</p></li>
-<li><p>Thesis: Grassland Birds in the Parkland Transition. Courses cover aspects of economics, sociology, and reclamation/restoration from a natural resources management perspective.</p></li>
-<li><p>Awarded Conservation Science Fellowship in conjunction with the Nature Conservancy of Canada.</p></li>
-<li><p>Learned how to identify own epistemological biases. Improved skills in scientific study design. Attempted to link theoretical ecological concepts to conservation management.</p></li>
+<li><p>Masters program involving a thesis, course work, and public
+facing presentations in partnership with the Nature Conservancy of
+Canada.</p></li>
+<li><p>Thesis: Grassland Birds in the Parkland Transition. Courses cover
+aspects of economics, sociology, and reclamation/restoration from a
+natural resources management perspective.</p></li>
+<li><p>Awarded Conservation Science Fellowship in conjunction with the
+Nature Conservancy of Canada.</p></li>
+<li><p>Learned how to identify own epistemological biases. Improved
+skills in scientific study design. Attempted to link theoretical
+ecological concepts to conservation management.</p></li>
 </ul>
-</div>
-<div id="visuals" class="section level3">
-<h3>Visuals</h3>
-<p><embed src="visuals/gsb_proposal_v3.pdf" style="width:75.0%" /></p>
-<p>Thesis proposal (defended May 2021).</p>
 </div>
 <div id="section" class="section level3 active">
 <h3 class="active">-</h3>
@@ -376,34 +381,54 @@ div.tocify {
 </div>
 <div id="niagara-college-nc" class="section level2 tabset">
 <h2 class="tabset">Niagara College (NC)</h2>
-<p>9-2018 to 5-2019 (8 Months) Niagara-On-The-Lake, ON <a href="https://www.niagaracollege.ca/">Website</a></p>
+<p>9-2018 to 5-2019 (8 Months) Niagara-On-The-Lake, ON <a
+href="https://www.niagaracollege.ca/">Website</a></p>
 <div id="description-1" class="section level3">
 <h3>Description</h3>
-<p><strong>Post-Graduate Certificate in Ecosystem Restoration (PGC)</strong></p>
+<p><strong>Post-Graduate Certificate in Ecosystem Restoration
+(PGC)</strong></p>
 <ul>
-<li><p>Trained in planning, implementing, and monitoring ecosystem restoration projects.</p></li>
-<li><p>Conducted forest, prairie, and wetland ecosystem classification including aerial imagery ecosystem delineation. Trained in natural channel design and river corridor restoration. Studied bioengineering using live plant material and geotextiles. Sampled benthos and mapped aquatic habitat. Trained in electrofishing, bird surveying, mammal tracking, and multiple aspects of environmental monitoring.</p></li>
-<li><p>Engaged students, community members, and industry though role in Niagara College Student Chapter of the Society for Ecological Restoration.</p></li>
-<li><p>Learned environmental policy considerations in project planning. Introduced to many aspects of stakeholder engagement. Produced proposals, technical reports, and presentations for professional clients.</p></li>
+<li><p>Trained in planning, implementing, and monitoring ecosystem
+restoration projects.</p></li>
+<li><p>Conducted forest, prairie, and wetland ecosystem classification
+including aerial imagery ecosystem delineation. Trained in natural
+channel design and river corridor restoration. Studied bioengineering
+using live plant material and geotextiles. Sampled benthos and mapped
+aquatic habitat. Trained in electrofishing, bird surveying, mammal
+tracking, and multiple aspects of environmental monitoring.</p></li>
+<li><p>Engaged students, community members, and industry though role in
+Niagara College Student Chapter of the Society for Ecological
+Restoration.</p></li>
+<li><p>Learned environmental policy considerations in project planning.
+Introduced to many aspects of stakeholder engagement. Produced
+proposals, technical reports, and presentations for professional
+clients.</p></li>
 </ul>
 </div>
 <div id="section-1" class="section level3 active">
 <h3 class="active">-</h3>
-<p><strong>Post-Graduate Certificate in Ecosystem Restoration (PGC)</strong></p>
+<p><strong>Post-Graduate Certificate in Ecosystem Restoration
+(PGC)</strong></p>
 <p><br></p>
 </div>
 </div>
 <div id="university-of-toronto-uoft" class="section level2 tabset">
 <h2 class="tabset">University of Toronto (UofT)</h2>
-<p>9-2013 to 4-2017 (4 Years) Toronto, ON <a href="https://www.utoronto.ca/">Website</a></p>
+<p>9-2013 to 4-2017 (4 Years) Toronto, ON <a
+href="https://www.utoronto.ca/">Website</a></p>
 <div id="description-2" class="section level3">
 <h3>Description</h3>
 <p><strong>Honour’s Bachelor of Arts and Science (BSc)</strong></p>
 <ul>
-<li><p>Double majored in Ecology &amp; Evolutionary Biology; Biodiversity &amp; Conservation Biology.</p></li>
-<li><p>Studied population and community ecology focusing on the impacts of global change on conservation.</p></li>
-<li><p>Graduated with Honours and High Distinction. Completed two independent theses.</p></li>
-<li><p>Developed skills in approaching questions scientifically, researching the current state of knowledge on a topic, and organizing groups to solve problems and complete projects.</p></li>
+<li><p>Double majored in Ecology &amp; Evolutionary Biology;
+Biodiversity &amp; Conservation Biology.</p></li>
+<li><p>Studied population and community ecology focusing on the impacts
+of global change on conservation.</p></li>
+<li><p>Graduated with Honours and High Distinction. Completed two
+independent theses.</p></li>
+<li><p>Developed skills in approaching questions scientifically,
+researching the current state of knowledge on a topic, and organizing
+groups to solve problems and complete projects.</p></li>
 </ul>
 </div>
 <div id="section-2" class="section level3 active">
@@ -414,376 +439,196 @@ div.tocify {
 </div>
 </div>
 </div>
-<div id="accreditations" class="section level1">
-<h1><strong>Accreditations</strong></h1>
-<div id="alberta-society-for-professional-biologists-aspb" class="section level2 tabset">
-<h2 class="tabset">Alberta Society for Professional Biologists (ASPB)</h2>
-<p>5-2020 to 1-2022 (2 Year) AB <a href="https://www.aspb.ab.ca/">Website</a></p>
+<div id="employment" class="section level1">
+<h1><strong>Employment</strong></h1>
+<div id="wildlife-conservation-society-canada-wcs"
+class="section level2 tabset">
+<h2 class="tabset">Wildlife Conservation Society Canada (WCS)</h2>
+<p>1-2022 to 11-2023 (23 Months) Winnipeg, MB <a
+href="https://www.wcs.org/">Website</a></p>
 <div id="description-3" class="section level3">
 <h3>Description</h3>
-<p><strong>Biologist in Training (BIT)</strong></p>
+<p><strong>Key Biodiversity Area Regional Coordinator (KBA)</strong></p>
 <ul>
-<li>Eligible for Professional Biologist (P.Biol) designation in 2022.</li>
+<li><p>Nominated Key Biodiversity Areas (KBAs) in Manitoba,
+Saskatchewan, and Alberta for non-avian species at risk.</p></li>
+<li><p>Assessed species for threshold population sizes using relational
+NatureServe geodatabase. Wrote proposals for sites. Liaised with
+technical experts to ensure data quality and proposal accuracy.</p></li>
+<li><p>Read, analyzed, and interpreted conservation data, reports, and
+information for over 400 potential KBA trigger elements (species).
+Interacted/interviewed over 100 experts and knowledge holders.
+Identified, analyzed, and wrote proposals for approximately 45 sites to
+recognize their exceptional conservation value.</p></li>
+<li><p>Learned about sensitive species data security protocols,
+conservation rankings, and aspects of species designation.</p></li>
 </ul>
+</div>
+<div id="links" class="section level3">
+<h3>Links</h3>
+<p><strong>Key Biodiversity Area Regional Coordinator (KBA)</strong></p>
+<p><a href="https://kbacanada.org/">KBA Canada Website</a></p>
 </div>
 <div id="section-3" class="section level3 active">
 <h3 class="active">-</h3>
-<p><strong>Biologist in Training (BIT)</strong></p>
+<p><strong>Key Biodiversity Area Regional Coordinator (KBA)</strong></p>
 <p><br></p>
 </div>
 </div>
-<div id="society-for-ecological-restoration-ser" class="section level2 tabset">
-<h2 class="tabset">Society for Ecological Restoration (SER)</h2>
-<p>4-2019 to 1-2022 (3 Years) CAN <a href="https://www.ser.org/general/custom.asp?page=Certification">Website</a></p>
+<div id="university-of-manitoba-uofm-1" class="section level2 tabset">
+<h2 class="tabset">University of Manitoba (UofM)</h2>
+<p>4-2023 to 5-2023 (1 Months) Sauteurs, Grenada <a
+href="https://www.umanitoba.ca/">Website</a></p>
 <div id="description-4" class="section level3">
 <h3>Description</h3>
-<p><strong>Certified Ecological Restoration Practitioner in Training (CERPIT)</strong></p>
+<p><strong>Data Analyst</strong></p>
 <ul>
-<li>Eligible for Certification Ecological Restoration Practitioner (CERP) designation in 2024.</li>
+<li><p>Short term contract with masters student in the Koper Lab at the
+University of Manitoba researching nesting success of land birds in
+Grenada.</p></li>
+<li><p>Developed data collection procedures using FieldMaps for nest
+searching, nest monitoring, vegetation surveys, and ecosystem mapping.
+Produced ArcGIS Dashboards for real-time visualization of data
+collection progress. Conducted surveys concurrently and adaptively
+improved collection procedures. Assisted student researcher with data
+analysis protocols.</p></li>
 </ul>
 </div>
 <div id="section-4" class="section level3 active">
 <h3 class="active">-</h3>
-<p><strong>Certified Ecological Restoration Practitioner in Training (CERPIT)</strong></p>
+<p><strong>Data Analyst</strong></p>
 <p><br></p>
-<p><br></p>
 </div>
 </div>
-</div>
-<div id="projects" class="section level1">
-<h1><strong>Projects</strong></h1>
-<div id="mountain-bluebird-nesting-success-in-response-to-landscape-structure" class="section level2 tabset">
-<h2 class="tabset">Mountain Bluebird Nesting Success in Response to Landscape Structure</h2>
-<p>9-2021 to 1-2022 (4 Months) Southern Region, AB</p>
-<p><a href="https://bluebirdtrails.org/">Mountain Bluebird Trail Conservation Society</a></p>
+<div id="blood-tribe-land-management-btlm"
+class="section level2 tabset">
+<h2 class="tabset">Blood Tribe Land Management (BTLM)</h2>
+<p>1-2022 to 4-2022 (4 Months) Standoff, AB <a
+href="https://bloodtribe.org/index.php/blood-tribe-land-management/">Website</a></p>
 <div id="description-5" class="section level3">
 <h3>Description</h3>
-<p><strong>Mountain Bluebird Nesting Success in Response to Landscape Structure</strong></p>
+<p><strong>Data Analyst</strong></p>
 <ul>
-<li><p>Used monitoring data from non-profit society dedicated to providing artificial habitat boxes for Mountain Bluebirds to assess attributes affecting nesting success.</p></li>
-<li><p>Consolidated over 30 years of monitoring reports. Analyzed land cover using publicly available data and aerial imagery. Created models to assess the impacts of landscape and management variables on Mountain Bluebird nesting success.</p></li>
+<li><p>Short term contract with Lands Department for the Blood Tribe
+First Nation in Alberta, Canada.</p></li>
+<li><p>Conglomerated existing datasets for traditional plant surveys,
+avian surveys, and other enivornmental monitoring. Improved protocols
+for digital data collection using FieldMaps. Produced ArcGIS Dashboards
+to display data in real time as collected.</p></li>
 </ul>
 </div>
 <div id="section-5" class="section level3 active">
 <h3 class="active">-</h3>
-<p><strong>Mountain Bluebird Nesting Success in Response to Landscape Structure</strong></p>
+<p><strong>Data Analyst</strong></p>
 <p><br></p>
 </div>
 </div>
-<div id="using-google-trends-to-predict-park-visitation" class="section level2 tabset">
-<h2 class="tabset">Using Google Trends to Predict Park Visitation</h2>
-<p>9-2020 to 1-2022 (17 Months) Winnipeg, MB</p>
-<p><a href="https://www.umanitoba.ca/">University of Manitoba</a></p>
+<div id="niagara-peninsula-conservation-authority-npca"
+class="section level2 tabset">
+<h2 class="tabset">Niagara Peninsula Conservation Authority (NPCA)</h2>
+<p>9-2021 to 11-2021 (2 Months) St. Catherine’s, ON <a
+href="https://npca.ca/">Website</a></p>
 <div id="description-6" class="section level3">
 <h3>Description</h3>
-<p><strong>Using Google Trends to Predict Park Visitation</strong></p>
+<p><strong>Restoration Assistant</strong></p>
 <ul>
-<li><p>Explored possibility of using Google Trends data to predict public visitation to national parks in Canada.</p></li>
-<li><p>Sourced national park visitation data from Canada Open Data. Used gTrendsR package to correlate visitation with relative search interest.</p></li>
-<li><p>Preliminary results support that when visitation is above a given monthly threshold, Google Trends data has between a 40 and 70% correlation with visitation rates.</p></li>
+<li><p>Short-term contract assisting in Fall restoration
+plantings.</p></li>
+<li><p>Planted tree and shrub container stock. Installed live stakes and
+geotextiles for streambank stabilization. Liaised with partners and land
+owners. Attended and led volunteer events.</p></li>
 </ul>
-</div>
-<div id="visuals-1" class="section level3">
-<h3>Visuals</h3>
-<p><embed src="visuals/trends_pb.pdf" style="width:75.0%" /></p>
-<p>Policy brief submitted in fulfillment of class project.</p>
-</div>
-<div id="links" class="section level3">
-<h3>Links</h3>
-<p><a href="https://trends.google.ca">Google Trends</a></p>
-<p><a href="https://www.rdocumentation.org/packages/gtrendsR/versions/1.4.8">gTrendsR Documentation</a></p>
 </div>
 <div id="section-6" class="section level3 active">
 <h3 class="active">-</h3>
-<p><strong>Using Google Trends to Predict Park Visitation</strong></p>
+<p><strong>Restoration Assistant</strong></p>
 <p><br></p>
 </div>
 </div>
-<div id="grassland-birds-in-the-parkland-transition" class="section level2 tabset">
-<h2 class="tabset">Grassland Birds in the Parkland Transition</h2>
-<p>7-2020 to 1-2022 (19 Months) Pincher Creek, AB</p>
-<p><a href="https://www.umanitoba.ca/">University of Manitoba</a></p>
+<div id="heritage-saskatchewan-hs" class="section level2 tabset">
+<h2 class="tabset">Heritage Saskatchewan (HS)</h2>
+<p>1-2021 to 4-2021 (4 Months) Regina, SK <a
+href="https://heritagesask.ca/">Website</a></p>
 <div id="description-7" class="section level3">
 <h3>Description</h3>
-<p><strong>Grassland Birds in the Parkland Transition</strong></p>
+<p><strong>Inventorying Living Heritage Conservation in SK</strong></p>
 <ul>
-<li><p>Masters thesis project studying the interactions between landscape structure, vegetation communities, and cattle grazing on grassland bird communities on private conservation projects in southern Alberta.</p></li>
-<li><p>Designed and implemented new long-term monitoring program for birds on private conservation rangelands. Conducted point count surveys. Deployed and analyzed data from Automated Recording Units (ARUs). Analyzed spatial land cover data. Conducted rangeland health assessments. Leased with cattle managers, land owners, and non-profit partners.</p></li>
-<li><p>Awarded Conservation Science Fellowship in conjunction with the Nature Conservancy of Canada.</p></li>
-<li><p>Attempting to elucidate the species present in a highly conserved region that is understudied from an avian perspective. Informing cattle management best practices by linking species abundances to rangeland health. Informing the debate in landscape ecology of birds regarding whether habitat amount or fragmentation has larger impacts on habitat usage.</p></li>
+<li><p>Short-term contract studying the state of heritage conservation
+in Saskatchewan focusing on the spectrum of work from ‘Built Heritage’
+to ‘Intangible Cultural Heritage’.</p></li>
+<li><p>Designed classification taxonomy for contributions to heritage
+conservation. Created and populated organizational contact database
+through internet research and conglomerating existing contact lists.
+Analyzed data to identify data gaps and priorities for future research
+and outreach.</p></li>
+<li><p>Created a tagged database of over 3300 organizations of varying
+relations to heritage conservation with contact information.</p></li>
+<li><p>Learned about multifaceted aspects of heritage and the
+intersection between environment and culture.</p></li>
 </ul>
 </div>
-<div id="visuals-2" class="section level3">
-<h3>Visuals</h3>
-<p><embed src="visuals/gsb_proposal_v3.pdf" style="width:75.0%" /></p>
-<p>Thesis proposal (defended May 2021).</p>
+<div id="media" class="section level3">
+<h3>Media</h3>
+<p><strong>Inventorying Living Heritage Conservation in SK</strong></p>
+<p><a
+href="https://zacharymilosmoore.ca/visuals/hs_report_sub.pdf">Subset of
+final report submitted in fulfillment of contract.</a></p>
+<p><a
+href="https://zacharymilosmoore.ca/visuals/hs_database_template.xlsx">Macro-enabled
+excel database template with automated analyses.</a></p>
 </div>
 <div id="section-7" class="section level3 active">
 <h3 class="active">-</h3>
-<p><strong>Grassland Birds in the Parkland Transition</strong></p>
+<p><strong>Inventorying Living Heritage Conservation in SK</strong></p>
 <p><br></p>
 </div>
 </div>
-<div id="western-canada-restoration-practitioner-survey" class="section level2 tabset">
-<h2 class="tabset">Western Canada Restoration Practitioner Survey</h2>
-<p>2-2020 to 1-2022 (24 Months) Western Canada</p>
-<p><a href="https://chapter.ser.org/westerncanada/">Society for Ecological Restoration</a></p>
+<div id="unlock" class="section level2 tabset">
+<h2 class="tabset">Unlock</h2>
+<p>1-2021 to 2-2021 (1 Months) London, UK <a
+href="https://www.joinunlock.com/">Website</a></p>
 <div id="description-8" class="section level3">
 <h3>Description</h3>
-<p><strong>Western Canada Restoration Practitioner Survey</strong></p>
+<p><strong>Data Analyst</strong></p>
 <ul>
-<li><p>Pilot survey of restoration practitioners in the Kootenay region of BC to identify usage of SER Principles in restoration project design and implementation.</p></li>
-<li><p>Designed and distributed survey. Analyzed results. Presented publicly.</p></li>
-<li><p>Presented preliminary results as a poster at SER 2021 World Conferences.</p></li>
-<li><p>Learned that international principles are generally implemented by Western Canadian practitioners, in some cases without knowledge of SER. Identified additional priorities specific to Canadian restoration.</p></li>
+<li><p>Short term contract with online group experience
+provider.</p></li>
+<li><p>Conglomerated user data from multiple sources. Recommended new
+internal platform data structure to improve future analysis and
+reporting capabilities.</p></li>
 </ul>
-</div>
-<div id="visuals-3" class="section level3">
-<h3>Visuals</h3>
-<p><embed src="visuals/serwc_poster.pdf" style="width:75.0%" /></p>
-<p>SER 2021 World Conference poster presentation.</p>
-</div>
-<div id="links-1" class="section level3">
-<h3>Links</h3>
-<p><a href="https://chapter.ser.org/westerncanada/">Collaborators: Emily Pejic, Rebecca Wilson</a></p>
 </div>
 <div id="section-8" class="section level3 active">
 <h3 class="active">-</h3>
-<p><strong>Western Canada Restoration Practitioner Survey</strong></p>
-<p><br></p>
-</div>
-</div>
-<div id="inventorying-living-heritage-conservation-in-sk" class="section level2 tabset">
-<h2 class="tabset">Inventorying Living Heritage Conservation in SK</h2>
-<p>1-2021 to 4-2021 (4 Months) Regina, SK</p>
-<p><a href="https://heritagesask.ca/">Heritage Saskatchewan</a></p>
-<div id="description-9" class="section level3">
-<h3>Description</h3>
-<p><strong>Inventorying Living Heritage Conservation in SK</strong></p>
-<ul>
-<li><p>Studied the state of heritage conservation in Saskatchewan focusing on the spectrum of work from ‘Built Heritage’ to ‘Intangible Cultural Heritage’.</p></li>
-<li><p>Designed classification taxonomy for contributions to heritage conservation. Created and populated organizational contact database through internet research and conglomerating existing contact lists. Analyzed data to identify data gaps and priorities for future research and outreach.</p></li>
-<li><p>Created a tagged database of over 3300 organizations of varying relations to heritage conservation with contact information.</p></li>
-<li><p>Learned about multifaceted aspects of heritage and the intersection between environment and culture.</p></li>
-</ul>
-</div>
-<div id="visuals-4" class="section level3">
-<h3>Visuals</h3>
-<p><embed src="visuals/hs_report_sub.pdf" style="width:75.0%" /></p>
-<p>Subset of final report submitted in fulfillment of contract.</p>
-</div>
-<div id="links-2" class="section level3">
-<h3>Links</h3>
-<p><a href="visuals/hs_database_template.xlsx">Macro-enabled excel database template with automated analyses.</a></p>
-</div>
-<div id="section-9" class="section level3 active">
-<h3 class="active">-</h3>
-<p><strong>Inventorying Living Heritage Conservation in SK</strong></p>
-<p><br></p>
-</div>
-</div>
-<div id="rangeland-and-riparian-health-database" class="section level2 tabset">
-<h2 class="tabset">Rangeland and Riparian Health Database</h2>
-<p>1-2020 to 6-2020 (6 Months) Southern Region, AB</p>
-<p><a href="https://www.natureconservancy.ca/en/">Nature Conservancy Canada</a></p>
-<div id="description-10" class="section level3">
-<h3>Description</h3>
-<p><strong>Rangeland and Riparian Health Database</strong></p>
-<ul>
-<li><p>Created and analyzed database connecting historical and ongoing range and riparian health assessments.</p></li>
-<li><p>Conglomerated nearly 20 years of rangeland and riparian health reports across over 10,000 hectares of NCC property into a living excel database. Adapted range health polygons into analyzable format. Created automated analysis and reporting templates with table and figure outputs through R Statistical Programming.</p></li>
-<li><p>Created functional database to house historical data, input continuing assessment data, and automated analysis the conglomerated data to facilitate reporting.</p></li>
-<li><p>Scanned technical reports for important information. Standardized input of various report formats. Improved R-coding skills.</p></li>
-</ul>
-</div>
-<div id="visuals-5" class="section level3">
-<h3>Visuals</h3>
-<p><embed src="visuals/rrha_report_sub.pdf" style="width:75.0%" /></p>
-<p>Subset of final report and instruction manual submitted in completion of project.</p>
-</div>
-<div id="links-3" class="section level3">
-<h3>Links</h3>
-<p><a href="visuals/rrha_template.xlsx">Database for range and riparian health assessments allowing for automated analysis in R.</a></p>
-</div>
-<div id="section-10" class="section level3 active">
-<h3 class="active">-</h3>
-<p><strong>Rangeland and Riparian Health Database</strong></p>
-<p><br></p>
-</div>
-</div>
-<div id="ladybird-biophysical-inventory" class="section level2 tabset">
-<h2 class="tabset">Ladybird Biophysical Inventory</h2>
-<p>9-2019 to 6-2020 (9 Months) Nelson, BC</p>
-<p>Private Consultation</p>
-<div id="description-11" class="section level3">
-<h3>Description</h3>
-<p><strong>Ladybird Biophysical Inventory</strong></p>
-<ul>
-<li><p>Contract with private landowner in British Columbia to complete biophysical inventory of a 594 acre parcel of reforested land.</p></li>
-<li><p>Conducted preliminary site assessments using publicly available spatial data to assess edaphic and hydrological conditions. Assessed changes in land use through time using aerial imagery. Determined success of reforestation efforts based on increases in forest cover through in field surveys. Mapped and removed invasive species and dump sites.</p></li>
-<li><p>Discovered initial replanting efforts following logging were less successful than desired. Identified priority areas for management changes.</p></li>
-</ul>
-</div>
-<div id="visuals-6" class="section level3">
-<h3>Visuals</h3>
-<p><embed src="visuals/ladybird_bi_sub.pdf" style="width:75.0%" /></p>
-<p>Subset of final report submitted in fulfillment of consultation.</p>
-</div>
-<div id="section-11" class="section level3 active">
-<h3 class="active">-</h3>
-<p><strong>Ladybird Biophysical Inventory</strong></p>
-<p><br></p>
-</div>
-</div>
-<div id="terrestrial-insect-restoration-responses" class="section level2 tabset">
-<h2 class="tabset">Terrestrial Insect Restoration Responses</h2>
-<p>9-2018 to 5-2019 (8 Months) Niagara-On-The-Lake, ON</p>
-<p><a href="https://www.niagaracollege.ca/">Niagara College</a></p>
-<div id="description-12" class="section level3">
-<h3>Description</h3>
-<p><strong>Terrestrial Insect Restoration Responses</strong></p>
-<ul>
-<li><p>Summative project in college program comparing terrestrial arthropod communities in wetlands at different stages of ecological restoration.</p></li>
-<li><p>Used Malaise traps and pitfall traps to collect insect specimens at two wetlands: one restored in the 1970’s and one restored one year prior to assessment.</p></li>
-<li><p>Found that total insect abundance was higher at the older restoration project, but taxonomic diversity was not. Provided recommendations on inclusion into existing long term monitoring programs.</p></li>
-</ul>
-</div>
-<div id="visuals-7" class="section level3">
-<h3>Visuals</h3>
-<p><embed src="visuals/terrestrial_insects_paper.pdf" style="width:75.0%" /></p>
-<p>Final paper submitted in completion of course</p>
-</div>
-<div id="links-4" class="section level3">
-<h3>Links</h3>
-<p><a href="https://www.niagaracollege.ca/">Collaborator: Michelle Place</a></p>
-</div>
-<div id="section-12" class="section level3 active">
-<h3 class="active">-</h3>
-<p><strong>Terrestrial Insect Restoration Responses</strong></p>
-<p><br></p>
-</div>
-</div>
-<div id="aphid-farm-tritrophic-community-interactions-ksr-usra" class="section level2 tabset">
-<h2 class="tabset">Aphid Farm: Tritrophic Community Interactions (KSR USRA)</h2>
-<p>9-2016 to 9-2017 (1 Year) Toronto, ON</p>
-<p><a href="https://www.utoronto.ca/">University of Toronto</a></p>
-<div id="description-13" class="section level3">
-<h3>Description</h3>
-<p><strong>Aphid Farm: Tritrophic Community Interactions (KSR USRA)</strong></p>
-<ul>
-<li><p>Undergraduate thesis project using two aphid species in laboratory and field experiments to examine the relative impacts of temperature on consumer-resource interactions, density dependence, interspecific competition, ant-hemipteran mutualisms, and predation.</p></li>
-<li><p>Designed, implemented, and maintained manipulative experiments in growth chambers and field cages. Analyzed and presented data.</p></li>
-<li><p>Awarded University of Toronto’s Koffler Scientific Reserve Undergraduate Research Award (KSR USRA). Received ‘Best Poster Presentation in Evolutionary Ecology’ award at University of Toronto undergraduate research fair (March 2017). Currently undergoing revisions for publication.</p></li>
-</ul>
-</div>
-<div id="visuals-8" class="section level3">
-<h3>Visuals</h3>
-<p><embed src="visuals/aphid_farm_interactions.pdf" style="width:75.0%" /></p>
-<p>Diagrammatic representation of interactions within model system. <embed src="visuals/aphid_farm_poster.pdf" style="width:75.0%" /></p>
-<p>Poster submitted in fulfillment of preliminary study for undergraduate thesis. <img src="visuals/aphid_farm_fld3.jpeg" style="width:75.0%" /></p>
-<p>Experimental community modelling results.</p>
-</div>
-<div id="links-5" class="section level3">
-<h3>Links</h3>
-<p><a href="http://gilbert.eeb.utoronto.ca/">Collaborator: Benjamin Gilbert</a></p>
-</div>
-<div id="section-13" class="section level3 active">
-<h3 class="active">-</h3>
-<p><strong>Aphid Farm: Tritrophic Community Interactions (KSR USRA)</strong></p>
-<p><br></p>
-</div>
-</div>
-<div id="daphnia-fishery-experimental-population-destabilization-from-harvesting-nserc-usra" class="section level2 tabset">
-<h2 class="tabset">Daphnia Fishery: Experimental Population Destabilization from Harvesting (NSERC USRA)</h2>
-<p>6-2015 to 9-2016 (1 Year) Toronto, ON</p>
-<p><a href="https://www.utoronto.ca/">University of Toronto</a></p>
-<div id="description-14" class="section level3">
-<h3>Description</h3>
-<p><strong>Daphnia Fishery: Experimental Population Destabilization from Harvesting (NSERC USRA)</strong></p>
-<ul>
-<li><p>Undergraduate thesis project using Daphnia magna to model fisheries dynamics in discerning between mechanisms of population destabilization resulting from size-selective harvesting.</p></li>
-<li><p>Designed, implemented, and maintained manipulative experiment using Daphnia magna mesocosms. Analyzed and presented data.</p></li>
-<li><p>Awarded Natural Sciences and Engineering Research Council of Canada Undergraduate Student Research Award (NSERC USRA). Received ‘Honorable Mention’ at 2016 Ontario Ecology, Evolution, and Ethology Conference. Currently undergoing revisions for publication.</p></li>
-<li><p>Learned about collaboration and the time inputs involved in the peer-review scientific process.</p></li>
-</ul>
-</div>
-<div id="visuals-9" class="section level3">
-<h3>Visuals</h3>
-<p><embed src="visuals/daphnia_fishery_2018-10-09.pdf" style="width:75.0%" /></p>
-<p>Manuscript submitted for review <embed src="visuals/daphnia_fishery_poster.pdf" style="width:75.0%" /></p>
-<p>Poster submitted in fulfillment of preliminary study for undergraduate thesis.</p>
-</div>
-<div id="links-6" class="section level3">
-<h3>Links</h3>
-<p><a href="https://krkosek.eeb.utoronto.ca/">Collaborator: Martin Krkošek</a></p>
-<p><a href="https://www.tcd.ie/Zoology/people/luijckxp">Collaborator: Pepijn Luckjx</a></p>
-<p><a href="https://www.utoronto.ca/">Other collaborators: Luka Rogers, Abby Daigle</a></p>
-</div>
-<div id="section-14" class="section level3 active">
-<h3 class="active">-</h3>
-<p><strong>Daphnia Fishery: Experimental Population Destabilization from Harvesting (NSERC USRA)</strong></p>
-<p><br></p>
-</div>
-</div>
-<div id="turf-wars-understory-turf-transplant-success" class="section level2 tabset">
-<h2 class="tabset">Turf Wars: Understory Turf Transplant Success</h2>
-<p>8-2016 to 8-2016 (14 Days) Sudbury, ON</p>
-<p><a href="https://laurentian.ca/">Laurentian University</a></p>
-<div id="description-15" class="section level3">
-<h3>Description</h3>
-<p><strong>Turf Wars: Understory Turf Transplant Success</strong></p>
-<ul>
-<li><p>Ontario University Programs in Field Biology (OUPFB) field course project examining the impacts of forest understory turf transplants in restoration efforts.</p></li>
-<li><p>Compared vegetation communities, soil macroinvertebrate communities, and decomposition assays between reference and restored sites.</p></li>
-<li><p>Found that understory turf transplants were successful at establishing vegetation, but less successful at increasing function (decomposition) or soil macroinvertebrate diversity.</p></li>
-</ul>
-</div>
-<div id="visuals-10" class="section level3">
-<h3>Visuals</h3>
-<p><embed src="visuals/turf_wars_paper.pdf" style="width:75.0%" /></p>
-<p>Final paper submitted in completion of course</p>
-</div>
-<div id="section-15" class="section level3 active">
-<h3 class="active">-</h3>
-<p><strong>Turf Wars: Understory Turf Transplant Success</strong></p>
-<p><br></p>
-<p><br></p>
-</div>
-</div>
-</div>
-<div id="employment" class="section level1">
-<h1><strong>Employment</strong></h1>
-<div id="niagara-peninsula-conservation-authority-npca" class="section level2 tabset">
-<h2 class="tabset">Niagara Peninsula Conservation Authority (NPCA)</h2>
-<p>9-2021 to 1-2022 (4 Months) St. Catherine’s, ON <a href="https://npca.ca/">Website</a></p>
-<div id="description-16" class="section level3">
-<h3>Description</h3>
-<p><strong>Restoration Implementation Technician</strong></p>
-<ul>
-<li><p>Short-term contract assisting in Fall restoration plantings.</p></li>
-<li><p>Planted tree and shrub container stock. Installed live stakes and geotextiles for streambank stabilization. Liaised with partners and land owners. Attended and led volunteer events.</p></li>
-</ul>
-</div>
-<div id="section-16" class="section level3 active">
-<h3 class="active">-</h3>
-<p><strong>Restoration Implementation Technician</strong></p>
+<p><strong>Data Analyst</strong></p>
 <p><br></p>
 </div>
 </div>
 <div id="nature-conservancy-canada-ncc" class="section level2 tabset">
 <h2 class="tabset">Nature Conservancy Canada (NCC)</h2>
-<p>5-2019 to 8-2020 (15 Months) Pincher Creek, AB <a href="https://www.natureconservancy.ca/en/">Website</a></p>
-<div id="description-17" class="section level3">
+<p>5-2019 to 8-2020 (15 Months) Pincher Creek, AB <a
+href="https://www.natureconservancy.ca/en/">Website</a></p>
+<div id="description-9" class="section level3">
 <h3>Description</h3>
 <p><strong>Natural Area Assistant - Waterton</strong></p>
 <ul>
-<li><p>Monitored NCC owned properties and conservation easements in the Waterton Park Front Area.</p></li>
-<li><p>Mapped anthropogenic features, invasive species occurrence, and assessed conservation success through various indicators. Prepared annual monitoring reports including recommendations for future stewardship efforts. Analyzed aerial imagery for discrepancies between monitoring visits. Liaised with property owners and grazing lease holders. Attended and led events in fence removal, invasive species management, river corridor restoration, and organization operations.</p></li>
-<li><p>Adjusted to working in a different culture and biota over a short period of time.</p></li>
-<li><p>Learned to liaise with land managers. Excelled in communicating complex issues to varied audiences.</p></li>
+<li><p>Monitored NCC owned properties and conservation easements in the
+Waterton Park Front Area.</p></li>
+<li><p>Mapped anthropogenic features, invasive species occurrence, and
+assessed conservation success through various indicators. Prepared
+annual monitoring reports including recommendations for future
+stewardship efforts. Analyzed aerial imagery for discrepancies between
+monitoring visits. Liaised with property owners and grazing lease
+holders. Attended and led events in fence removal, invasive species
+management, river corridor restoration, and organization
+operations.</p></li>
+<li><p>Adjusted to working in a different culture and biota over a short
+period of time.</p></li>
+<li><p>Learned to liaise with land managers. Excelled in communicating
+complex issues to varied audiences.</p></li>
 </ul>
 </div>
-<div id="section-17" class="section level3 active">
+<div id="section-9" class="section level3 active">
 <h3 class="active">-</h3>
 <p><strong>Natural Area Assistant - Waterton</strong></p>
 <p><br></p>
@@ -791,18 +636,28 @@ div.tocify {
 </div>
 <div id="earthbound-kids" class="section level2 tabset">
 <h2 class="tabset">Earthbound Kids</h2>
-<p>7-2018 to 9-2018 (2 Months) Stouffville, ON <a href="https://earthboundkids.ca/">Website</a></p>
-<div id="description-18" class="section level3">
+<p>7-2018 to 9-2018 (2 Months) Stouffville, ON <a
+href="https://earthboundkids.ca/">Website</a></p>
+<div id="description-10" class="section level3">
 <h3>Description</h3>
 <p><strong>Ecological Program Developer</strong></p>
 <ul>
-<li><p>Designed and led “Small Animals” interactive education program for students aged 4-16.</p></li>
-<li><p>Demonstrated live mammal handling, bird surveying, herpetofauna identification, and sampling of both aquatic and terrestrial invertebrates.</p></li>
-<li><p>Convinced more than 100 children (and adults) that “Small Animals” included ‘bugs’: not just furry animals. Awarded “Programmer of the Year” for dedication to participant experience and creation of novel educational demonstrations and materials.</p></li>
-<li><p>Learned to think on my feet by adjusting presentations to differing levels of subject interest. Developed exceptional benthic macroinvertebrate identification skills. Learned how to properly manage and handle farm animals.</p></li>
+<li><p>Designed and led “Small Animals” interactive education program
+for students aged 4-16.</p></li>
+<li><p>Demonstrated live mammal handling, bird surveying, herpetofauna
+identification, and sampling of both aquatic and terrestrial
+invertebrates.</p></li>
+<li><p>Convinced more than 100 children (and adults) that “Small
+Animals” included ‘bugs’: not just furry animals. Awarded “Programmer of
+the Year” for dedication to participant experience and creation of novel
+educational demonstrations and materials.</p></li>
+<li><p>Learned to think on my feet by adjusting presentations to
+differing levels of subject interest. Developed exceptional benthic
+macroinvertebrate identification skills. Learned how to properly manage
+and handle farm animals.</p></li>
 </ul>
 </div>
-<div id="section-18" class="section level3 active">
+<div id="section-10" class="section level3 active">
 <h3 class="active">-</h3>
 <p><strong>Ecological Program Developer</strong></p>
 <p><br></p>
@@ -810,18 +665,28 @@ div.tocify {
 </div>
 <div id="earthbound-trees" class="section level2 tabset">
 <h2 class="tabset">Earthbound Trees</h2>
-<p>5-2018 to 7-2018 (2 Months) Stouffville, ON <a href="https://earthboundtrees.ca/">Website</a></p>
-<div id="description-19" class="section level3">
+<p>5-2018 to 7-2018 (2 Months) Stouffville, ON <a
+href="https://earthboundtrees.ca/">Website</a></p>
+<div id="description-11" class="section level3">
 <h3>Description</h3>
 <p><strong>Tree Farm Hand</strong></p>
 <ul>
-<li><p>Assisted in tasks related to the management of a 640 acre small-scale native tree farm.</p></li>
-<li><p>Planted, monitored, and maintained bare-root, container, and root-balled trees. Mechanically and chemically managed invasive plants. Loaded/unloaded flatbed crane trucks. Drove pick-up trucks off-road and with trailers. Performed landscape maintenance using small tractors. Set-up water pumps/ irrigation systems. Built cedar post fences. Created and maintained forest trails.</p></li>
-<li><p>Inventoried &gt;1000 trees on property and assessed trees for health issues.</p></li>
-<li><p>Learned the necessity of good tools, boots, gloves, and waterproofing. Improved tree identification skills. Learned about common farming machinery including bobcats and tree spades.</p></li>
+<li><p>Assisted in tasks related to the management of a 640 acre
+small-scale native tree farm.</p></li>
+<li><p>Planted, monitored, and maintained bare-root, container, and
+root-balled trees. Mechanically and chemically managed invasive plants.
+Loaded/unloaded flatbed crane trucks. Drove pick-up trucks off-road and
+with trailers. Performed landscape maintenance using small tractors.
+Set-up water pumps/ irrigation systems. Built cedar post fences. Created
+and maintained forest trails.</p></li>
+<li><p>Inventoried &gt;1000 trees on property and assessed trees for
+health issues.</p></li>
+<li><p>Learned the necessity of good tools, boots, gloves, and
+waterproofing. Improved tree identification skills. Learned about common
+farming machinery including bobcats and tree spades.</p></li>
 </ul>
 </div>
-<div id="section-19" class="section level3 active">
+<div id="section-11" class="section level3 active">
 <h3 class="active">-</h3>
 <p><strong>Tree Farm Hand</strong></p>
 <p><br></p>
@@ -829,17 +694,22 @@ div.tocify {
 </div>
 <div id="oxford-learning-centres-inc." class="section level2 tabset">
 <h2 class="tabset">Oxford Learning Centres Inc. </h2>
-<p>9-2017 to 5-2018 (8 Months) Toronto, ON <a href="https://www.oxfordlearning.com/locations/toronto-don-mills-tutoring/">Website</a></p>
-<div id="description-20" class="section level3">
+<p>9-2017 to 5-2018 (8 Months) Toronto, ON <a
+href="https://www.oxfordlearning.com/locations/toronto-don-mills-tutoring/">Website</a></p>
+<div id="description-12" class="section level3">
 <h3>Description</h3>
 <p><strong>Math and Science Instructor</strong></p>
 <ul>
-<li><p>Instructor for groups of 3 students aged 8 to 18 focusing on math and science content, but also including English, history, and learning strategies.</p></li>
-<li><p>Designed and implemented curriculum supplementary material. Created educational resources for varied subject matter.</p></li>
-<li><p>Balanced the needs of diverse student backgrounds in a time-sensitive environment.</p></li>
+<li><p>Instructor for groups of 3 students aged 8 to 18 focusing on math
+and science content, but also including English, history, and learning
+strategies.</p></li>
+<li><p>Designed and implemented curriculum supplementary material.
+Created educational resources for varied subject matter.</p></li>
+<li><p>Balanced the needs of diverse student backgrounds in a
+time-sensitive environment.</p></li>
 </ul>
 </div>
-<div id="section-20" class="section level3 active">
+<div id="section-12" class="section level3 active">
 <h3 class="active">-</h3>
 <p><strong>Math and Science Instructor</strong></p>
 <p><br></p>
@@ -847,37 +717,51 @@ div.tocify {
 </div>
 <div id="university-of-toronto-uoft-1" class="section level2 tabset">
 <h2 class="tabset">University of Toronto (UofT)</h2>
-<p>5-2015 to 1-2018 (3 Years) Toronto, ON <a href="https://www.utoronto.ca/">Website</a></p>
-<div id="description-21" class="section level3">
+<p>5-2015 to 1-2018 (3 Years) Toronto, ON <a
+href="https://www.utoronto.ca/">Website</a></p>
+<div id="description-13" class="section level3">
 <h3>Description</h3>
-<p><strong>Scientific Researcher: Population and Community Ecology</strong></p>
+<p><strong>Scientific Researcher: Population and Community
+Ecology</strong></p>
 <ul>
-<li><p>Completed two independent undergraduate theses and a year long laboratory contract.</p></li>
+<li><p>Completed two independent undergraduate theses and a year long
+laboratory contract.</p></li>
 <li><p>Conducted scientific literature reviews and experiments.</p></li>
-<li><p>Presented results at three scientific conferences. Awarded two undergraduate student research awards (USRAs).</p></li>
-<li><p>Developed skills in experimental design, adapting to changing conditions, and admitting mistakes. Distinguished between times to ‘figure it out’ and times to ‘ask for help’.</p></li>
+<li><p>Presented results at three scientific conferences. Awarded two
+undergraduate student research awards (USRAs).</p></li>
+<li><p>Developed skills in experimental design, adapting to changing
+conditions, and admitting mistakes. Distinguished between times to
+‘figure it out’ and times to ‘ask for help’.</p></li>
 </ul>
 </div>
-<div id="section-21" class="section level3 active">
+<div id="section-13" class="section level3 active">
 <h3 class="active">-</h3>
-<p><strong>Scientific Researcher: Population and Community Ecology</strong></p>
+<p><strong>Scientific Researcher: Population and Community
+Ecology</strong></p>
 <p><br></p>
 </div>
 </div>
 <div id="mbm-installations-inc.-mbm" class="section level2 tabset">
 <h2 class="tabset">MBM Installations Inc. (MBM)</h2>
 <p>1-2013 to 9-2016 (4 Years) Southern Region, ON</p>
-<div id="description-22" class="section level3">
+<div id="description-14" class="section level3">
 <h3>Description</h3>
 <p><strong>Service Technician/ Health and Safety Inspector</strong></p>
 <ul>
-<li><p>Serviced and inspected physical education equipment, operable walls, and telescopic seating.</p></li>
-<li><p>Worked in general mechanics with power tools, saws, ladders, scaffolding, and aerial work platforms. Drove pick-up trucks and work vans with trailer attachments. Hired and managed employees. Completed inspections for industry health and safety standards.</p></li>
-<li><p>Communicated complex issues to clients with less familiarity. Coordinated inspections of over 200 sites over 4-month periods through scheduling with staff and clients.</p></li>
-<li><p>Learned how to problem solve complex issues, manage staff, coordinate site visits, and meet deadlines.</p></li>
+<li><p>Serviced and inspected physical education equipment, operable
+walls, and telescopic seating.</p></li>
+<li><p>Worked in general mechanics with power tools, saws, ladders,
+scaffolding, and aerial work platforms. Drove pick-up trucks and work
+vans with trailer attachments. Hired and managed employees. Completed
+inspections for industry health and safety standards.</p></li>
+<li><p>Communicated complex issues to clients with less familiarity.
+Coordinated inspections of over 200 sites over 4-month periods through
+scheduling with staff and clients.</p></li>
+<li><p>Learned how to problem solve complex issues, manage staff,
+coordinate site visits, and meet deadlines.</p></li>
 </ul>
 </div>
-<div id="section-22" class="section level3 active">
+<div id="section-14" class="section level3 active">
 <h3 class="active">-</h3>
 <p><strong>Service Technician/ Health and Safety Inspector</strong></p>
 <p><br></p>
@@ -887,86 +771,135 @@ div.tocify {
 </div>
 <div id="volunteering" class="section level1">
 <h1><strong>Volunteering</strong></h1>
-<div id="mountain-bluebird-trail-conservation-society-mbtcs" class="section level2 tabset">
-<h2 class="tabset">Mountain Bluebird Trail Conservation Society (MBTCS)</h2>
-<p>2-2020 to 1-2022 (24 Months) Pincher Creek, AB <a href="https://bluebirdtrails.org/">Website</a></p>
-<div id="description-23" class="section level3">
+<div id="society-for-conservation-biology-scb"
+class="section level2 tabset">
+<h2 class="tabset">Society for Conservation Biology (SCB)</h2>
+<p>5-2023 to 11-2023 (7 Months) North America <a
+href="https://scbnorthamerica.org/">Website</a></p>
+<div id="description-15" class="section level3">
+<h3>Description</h3>
+<p><strong>North America Chapter Director (SCB-NA)</strong></p>
+<ul>
+<li><p>Director for professional society dedicated to advancing the
+science and practise of conserving Earth’s biological
+diversity.</p></li>
+<li><p>Planned conferences. Ensured legal compliance of operations.
+Established priorities for new initiatives. Assisted in membership
+development and social media outreach.</p></li>
+</ul>
+</div>
+<div id="section-15" class="section level3 active">
+<h3 class="active">-</h3>
+<p><strong>North America Chapter Director (SCB-NA)</strong></p>
+<p><br></p>
+</div>
+</div>
+<div id="society-for-ecological-restoration-ser"
+class="section level2 tabset">
+<h2 class="tabset">Society for Ecological Restoration (SER)</h2>
+<p>9-2019 to 11-2023 (4 Years) Western Canada <a
+href="https://chapter.ser.org/westerncanada/">Website</a></p>
+<div id="description-16" class="section level3">
+<h3>Description</h3>
+<p><strong>Western Canada Chapter Director (SER-WC)</strong></p>
+<ul>
+<li><p>Director for professional society dedicated to furthering the
+practise of Ecological Restoration in Western Canada.</p></li>
+<li><p>Planned conferences. Ensured legal compliance of operations.
+Established priorities for new initiatives. Assisted in membership
+development and social media outreach.</p></li>
+</ul>
+</div>
+<div id="section-16" class="section level3 active">
+<h3 class="active">-</h3>
+<p><strong>Western Canada Chapter Director (SER-WC)</strong></p>
+<p><br></p>
+</div>
+</div>
+<div id="mountain-bluebird-trail-conservation-society-mbtcs"
+class="section level2 tabset">
+<h2 class="tabset">Mountain Bluebird Trail Conservation Society
+(MBTCS)</h2>
+<p>2-2020 to 8-2022 (3 Years) Pincher Creek, AB <a
+href="https://bluebirdtrails.org/">Website</a></p>
+<div id="description-17" class="section level3">
 <h3>Description</h3>
 <p><strong>Trail Monitor</strong></p>
 <ul>
 <li><p>Adopted trail of 22 bluebird boxes.</p></li>
-<li><p>Conducted maintenance, nest monitoring and reported results through standardized forms.</p></li>
+<li><p>Conducted maintenance, nest monitoring and reported results
+through standardized forms.</p></li>
 </ul>
 </div>
-<div id="section-23" class="section level3 active">
+<div id="section-17" class="section level3 active">
 <h3 class="active">-</h3>
 <p><strong>Trail Monitor</strong></p>
 <p><br></p>
 </div>
 </div>
-<div id="society-for-ecological-restoration-ser-1" class="section level2 tabset">
-<h2 class="tabset">Society for Ecological Restoration (SER)</h2>
-<p>9-2019 to 1-2022 (28 Months) Western Canada <a href="https://chapter.ser.org/westerncanada/">Website</a></p>
-<div id="description-24" class="section level3">
-<h3>Description</h3>
-<p><strong>Western Canada Chapter Vice Chair (SER-WC)</strong></p>
-<ul>
-<li><p>Director for professional society dedicated to furthering the practise of Ecological Restoration in Western Canada.</p></li>
-<li><p>Planned conferences. Ensured legal compliance of operations. Established priorities for new initiatives. Assisted in membership development and social media outreach.</p></li>
-</ul>
-</div>
-<div id="section-24" class="section level3 active">
-<h3 class="active">-</h3>
-<p><strong>Western Canada Chapter Vice Chair (SER-WC)</strong></p>
-<p><br></p>
-</div>
-</div>
-<div id="pincher-creek-and-district-food-centre" class="section level2 tabset">
+<div id="pincher-creek-and-district-food-centre"
+class="section level2 tabset">
 <h2 class="tabset">Pincher Creek and District Food Centre</h2>
-<p>5-2020 to 6-2020 (1 Months) Pincher Creek, AB <a href="https://www.facebook.com/foodcentrepc/">Website</a></p>
-<div id="description-25" class="section level3">
+<p>5-2020 to 6-2020 (1 Months) Pincher Creek, AB <a
+href="https://www.facebook.com/foodcentrepc/">Website</a></p>
+<div id="description-18" class="section level3">
 <h3>Description</h3>
 <p><strong>Project Lead - Growing Healthy Food Boxes</strong></p>
 <ul>
-<li><p>Organized and led volunteer events to produce raised-bed garden boxes and beginner gardening packages for under-privileged families.</p></li>
-<li><p>Coordinated volunteers, contacted recipients, designed and built boxes, liaised with public at events</p></li>
-<li><p>Designed and built 2’x2’x18” garden boxes for 10 families and 2 businesses.</p></li>
+<li><p>Organized and led volunteer events to produce raised-bed garden
+boxes and beginner gardening packages for under-privileged
+families.</p></li>
+<li><p>Coordinated volunteers, contacted recipients, designed and built
+boxes, liaised with public at events</p></li>
+<li><p>Designed and built 2’x2’x18” garden boxes for 10 families and 2
+businesses.</p></li>
 </ul>
 </div>
-<div id="section-25" class="section level3 active">
+<div id="section-18" class="section level3 active">
 <h3 class="active">-</h3>
 <p><strong>Project Lead - Growing Healthy Food Boxes</strong></p>
 <p><br></p>
 </div>
 </div>
-<div id="great-divide-trail-association-gdta" class="section level2 tabset">
+<div id="great-divide-trail-association-gdta"
+class="section level2 tabset">
 <h2 class="tabset">Great Divide Trail Association (GDTA)</h2>
-<p>7-2019 to 6-2020 (11 Months) Crowsnest Pass, AB <a href="https://greatdividetrail.com/">Website</a></p>
-<div id="description-26" class="section level3">
+<p>7-2019 to 6-2020 (11 Months) Crowsnest Pass, AB <a
+href="https://greatdividetrail.com/">Website</a></p>
+<div id="description-19" class="section level3">
 <h3>Description</h3>
-<p><strong>Trail Building and Maintenance Committee Member (TBMC)</strong></p>
+<p><strong>Trail Building and Maintenance Committee Member
+(TBMC)</strong></p>
 <ul>
-<li><p>Participated in committee with organization committed to the building, maintenance, and protection of the Great Divide Trail in Canada.</p></li>
-<li><p>Participated in 5-day, overnight, remote-area trail building trips. Contributed to organizational structure development. Liaised with partners and organized projects specific to the Crowsnest Pass area.</p></li>
+<li><p>Participated in committee with organization committed to the
+building, maintenance, and protection of the Great Divide Trail in
+Canada.</p></li>
+<li><p>Participated in 5-day, overnight, remote-area trail building
+trips. Contributed to organizational structure development. Liaised with
+partners and organized projects specific to the Crowsnest Pass
+area.</p></li>
 </ul>
 </div>
-<div id="section-26" class="section level3 active">
+<div id="section-19" class="section level3 active">
 <h3 class="active">-</h3>
-<p><strong>Trail Building and Maintenance Committee Member (TBMC)</strong></p>
+<p><strong>Trail Building and Maintenance Committee Member
+(TBMC)</strong></p>
 <p><br></p>
 </div>
 </div>
 <div id="adaptable-outdoors" class="section level2 tabset">
 <h2 class="tabset">Adaptable Outdoors</h2>
-<p>2-2020 to 4-2020 (2 Months) Pincher Creek, AB <a href="https://www.facebook.com/AdaptABLEoutdoors/">Website</a></p>
-<div id="description-27" class="section level3">
+<p>2-2020 to 4-2020 (2 Months) Pincher Creek, AB <a
+href="https://www.facebook.com/AdaptABLEoutdoors/">Website</a></p>
+<div id="description-20" class="section level3">
 <h3>Description</h3>
 <p><strong>Administration Committee Chair</strong></p>
 <ul>
-<li>Assisting in defining the structure and operations of a new society helping people with disabilities enjoy the outdoors.</li>
+<li>Assisting in defining the structure and operations of a new society
+helping people with disabilities enjoy the outdoors.</li>
 </ul>
 </div>
-<div id="section-27" class="section level3 active">
+<div id="section-20" class="section level3 active">
 <h3 class="active">-</h3>
 <p><strong>Administration Committee Chair</strong></p>
 <p><br></p>
@@ -974,33 +907,45 @@ div.tocify {
 </div>
 <div id="living-lakes-canada" class="section level2 tabset">
 <h2 class="tabset">Living Lakes Canada</h2>
-<p>9-2019 to 9-2019 (5 Days) Invermere, BC <a href="https://livinglakescanada.ca/">Website</a></p>
-<div id="description-28" class="section level3">
+<p>9-2019 to 9-2019 (5 Days) Invermere, BC <a
+href="https://livinglakescanada.ca/">Website</a></p>
+<div id="description-21" class="section level3">
 <h3>Description</h3>
-<p><strong>CABIN with STREAM DNA Metabarcoding Sample Collection</strong></p>
+<p><strong>CABIN with STREAM DNA Metabarcoding Sample
+Collection</strong></p>
 <ul>
-<li><p>Four-day volunteer workshop and data collection for aquatic biomonitoring.</p></li>
-<li><p>Trained in standardized sampling of aquatic macroinvertebrate communities (CABIN) for a national DNA metabarcoding project (STREAM)</p></li>
+<li><p>Four-day volunteer workshop and data collection for aquatic
+biomonitoring.</p></li>
+<li><p>Trained in standardized sampling of aquatic macroinvertebrate
+communities (CABIN) for a national DNA metabarcoding project
+(STREAM)</p></li>
 </ul>
 </div>
-<div id="section-28" class="section level3 active">
+<div id="section-21" class="section level3 active">
 <h3 class="active">-</h3>
-<p><strong>CABIN with STREAM DNA Metabarcoding Sample Collection</strong></p>
+<p><strong>CABIN with STREAM DNA Metabarcoding Sample
+Collection</strong></p>
 <p><br></p>
 </div>
 </div>
-<div id="castle-crown-wilderness-coalition-ccwc" class="section level2 tabset">
+<div id="castle-crown-wilderness-coalition-ccwc"
+class="section level2 tabset">
 <h2 class="tabset">Castle Crown Wilderness Coalition (CCWC)</h2>
-<p>5-2019 to 9-2019 (4 Months) Castle Provincial Park, AB <a href="http://ccwc.ab.ca/">Website</a></p>
-<div id="description-29" class="section level3">
+<p>5-2019 to 9-2019 (4 Months) Castle Provincial Park, AB <a
+href="http://ccwc.ab.ca/">Website</a></p>
+<div id="description-22" class="section level3">
 <h3>Description</h3>
 <p><strong>Stewardship Event Volunteer</strong></p>
 <ul>
-<li><p>Participated in habitat stewardship events for organization dedicated to preserving wildlife habitat in protected areas of the Castle Area.</p></li>
-<li><p>Removed weeds, installed habitat features, and maintained trails. Helped to educate groups about local diversity and conservation threats.</p></li>
+<li><p>Participated in habitat stewardship events for organization
+dedicated to preserving wildlife habitat in protected areas of the
+Castle Area.</p></li>
+<li><p>Removed weeds, installed habitat features, and maintained trails.
+Helped to educate groups about local diversity and conservation
+threats.</p></li>
 </ul>
 </div>
-<div id="section-29" class="section level3 active">
+<div id="section-22" class="section level3 active">
 <h3 class="active">-</h3>
 <p><strong>Stewardship Event Volunteer</strong></p>
 <p><br></p>
@@ -1008,70 +953,92 @@ div.tocify {
 </div>
 <div id="wildr" class="section level2 tabset">
 <h2 class="tabset">Wildr</h2>
-<p>6-2019 to 6-2019 (7 Days) Castle Provincial Park, AB <a href="https://www.wildr.ca/">Website</a></p>
-<div id="description-30" class="section level3">
+<p>6-2019 to 6-2019 (7 Days) Castle Provincial Park, AB <a
+href="https://www.wildr.ca/">Website</a></p>
+<div id="description-23" class="section level3">
 <h3>Description</h3>
 <p><strong>Rough Runner Event Volunteer</strong></p>
 <ul>
 <li><p>Assisted in outdoor fitness event.</p></li>
-<li><p>Set-up obstacles, determined course locations, and registered participants.</p></li>
-<li><p>Finished 100m vertical sprint, 9 km trail run, and 2 km obstacle course.</p></li>
+<li><p>Set-up obstacles, determined course locations, and registered
+participants.</p></li>
+<li><p>Finished 100m vertical sprint, 9 km trail run, and 2 km obstacle
+course.</p></li>
 </ul>
 </div>
-<div id="section-30" class="section level3 active">
+<div id="section-23" class="section level3 active">
 <h3 class="active">-</h3>
 <p><strong>Rough Runner Event Volunteer</strong></p>
 <p><br></p>
 </div>
 </div>
-<div id="society-for-ecological-restoration-ser-2" class="section level2 tabset">
+<div id="society-for-ecological-restoration-ser-1"
+class="section level2 tabset">
 <h2 class="tabset">Society for Ecological Restoration (SER)</h2>
-<p>9-2018 to 5-2019 (8 Months) Niagara-On-The-Lake, ON <a href="https://www.ser.org/">Website</a></p>
-<div id="description-31" class="section level3">
+<p>9-2018 to 5-2019 (8 Months) Niagara-On-The-Lake, ON <a
+href="https://www.ser.org/">Website</a></p>
+<div id="description-24" class="section level3">
 <h3>Description</h3>
-<p><strong>Niagara College Student Association Vice President (SER-NCSA)</strong></p>
+<p><strong>Niagara College Student Association Vice President
+(SER-NCSA)</strong></p>
 <ul>
-<li><p>Organized and led public outreach, stewardship, workshops, and restoration projects.</p></li>
-<li><p>Coordinated events for student stewardship engagement and a public BIOBLITZ. Organized volunteers and liaised with partners (General Motors, World Wildlife Fund). Led demonstrations in environmental monitoring.</p></li>
-<li><p>Learned how to condense instructions for successive volunteer groups. Learned to coordinate volunteer groups of people from different cultural and academic backgrounds.</p></li>
+<li><p>Organized and led public outreach, stewardship, workshops, and
+restoration projects.</p></li>
+<li><p>Coordinated events for student stewardship engagement and a
+public BIOBLITZ. Organized volunteers and liaised with partners (General
+Motors, World Wildlife Fund). Led demonstrations in environmental
+monitoring.</p></li>
+<li><p>Learned how to condense instructions for successive volunteer
+groups. Learned to coordinate volunteer groups of people from different
+cultural and academic backgrounds.</p></li>
 </ul>
 </div>
-<div id="section-31" class="section level3 active">
+<div id="section-24" class="section level3 active">
 <h3 class="active">-</h3>
-<p><strong>Niagara College Student Association Vice President (SER-NCSA)</strong></p>
+<p><strong>Niagara College Student Association Vice President
+(SER-NCSA)</strong></p>
 <p><br></p>
 </div>
 </div>
 <div id="conservation-halton" class="section level2 tabset">
 <h2 class="tabset">Conservation Halton</h2>
-<p>9-2018 to 4-2019 (1 Years) Halton, ON <a href="https://www.conservationhalton.ca/">Website</a></p>
-<div id="description-32" class="section level3">
+<p>9-2018 to 4-2019 (1 Years) Halton, ON <a
+href="https://www.conservationhalton.ca/">Website</a></p>
+<div id="description-25" class="section level3">
 <h3>Description</h3>
 <p><strong>River Corridor Restoration Technician</strong></p>
 <ul>
-<li><p>Installed structural and habitat features for restoration projects</p></li>
-<li><p>Installed crib walls, Christmas tree revetments (erosion control), standing snags, floating wood features, and various geotextiles</p></li>
-<li><p>Improved skills with hand tools and small machinery. Discovered pleasure of wading stream waters in November.</p></li>
+<li><p>Installed structural and habitat features for restoration
+projects</p></li>
+<li><p>Installed crib walls, Christmas tree revetments (erosion
+control), standing snags, floating wood features, and various
+geotextiles</p></li>
+<li><p>Improved skills with hand tools and small machinery. Discovered
+pleasure of wading stream waters in November.</p></li>
 </ul>
 </div>
-<div id="section-32" class="section level3 active">
+<div id="section-25" class="section level3 active">
 <h3 class="active">-</h3>
 <p><strong>River Corridor Restoration Technician</strong></p>
 <p><br></p>
 </div>
 </div>
-<div id="scihigh---lunenfield-research-institute" class="section level2 tabset">
+<div id="scihigh---lunenfield-research-institute"
+class="section level2 tabset">
 <h2 class="tabset">Scihigh - Lunenfield Research Institute</h2>
-<p>2-2016 to 4-2017 (1 Years) Toronto, ON <a href="https://scihigh.ca/">Website</a></p>
-<div id="description-33" class="section level3">
+<p>2-2016 to 4-2017 (1 Years) Toronto, ON <a
+href="https://scihigh.ca/">Website</a></p>
+<div id="description-26" class="section level3">
 <h3>Description</h3>
 <p><strong>Senior Demonstrator</strong></p>
 <ul>
-<li><p>Leader of &gt;10 in-class demonstrations for student groups aged 4-18 on various topics in biology.</p></li>
-<li><p>Performed demonstrations on uses of model organisms in scientific research, DNA structure, genetic modification, and anatomy.</p></li>
+<li><p>Leader of &gt;10 in-class demonstrations for student groups aged
+4-18 on various topics in biology.</p></li>
+<li><p>Performed demonstrations on uses of model organisms in scientific
+research, DNA structure, genetic modification, and anatomy.</p></li>
 </ul>
 </div>
-<div id="section-33" class="section level3 active">
+<div id="section-26" class="section level3 active">
 <h3 class="active">-</h3>
 <p><strong>Senior Demonstrator</strong></p>
 <p><br></p>
@@ -1079,69 +1046,379 @@ div.tocify {
 </div>
 <div id="university-of-toronto-uoft-2" class="section level2 tabset">
 <h2 class="tabset">University of Toronto (UofT)</h2>
-<p>9-2014 to 5-2015 (8 Months) Toronto, ON <a href="https://www.utoronto.ca/">Website</a></p>
-<div id="description-34" class="section level3">
+<p>9-2014 to 5-2015 (8 Months) Toronto, ON <a
+href="https://www.utoronto.ca/">Website</a></p>
+<div id="description-27" class="section level3">
 <h3>Description</h3>
 <p><strong>Research Assistant (Agrawal Lab)</strong></p>
 <ul>
-<li>Assisted in graduate student research projects on experimental evolution using Drosophila melanogaster.</li>
+<li>Assisted in graduate student research projects on experimental
+evolution using Drosophila melanogaster.</li>
 </ul>
+</div>
+<div id="section-27" class="section level3 active">
+<h3 class="active">-</h3>
+<p><strong>Research Assistant (Agrawal Lab)</strong></p>
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="projects" class="section level1">
+<h1><strong>Projects</strong></h1>
+<div
+id="mountain-bluebird-nesting-success-in-response-to-landscape-structure"
+class="section level2 tabset">
+<h2 class="tabset">Mountain Bluebird Nesting Success in Response to
+Landscape Structure</h2>
+<p>9-2021 to 11-2023 (2 Years) Southern Region, AB</p>
+<p><a href="https://bluebirdtrails.org/">Mountain Bluebird Trail
+Conservation Society</a></p>
+<div id="description-28" class="section level3">
+<h3>Description</h3>
+<p><strong>Mountain Bluebird Nesting Success in Response to Landscape
+Structure</strong></p>
+<ul>
+<li><p>Used monitoring data from non-profit society dedicated to
+providing artificial habitat boxes for Mountain Bluebirds to assess
+attributes affecting nesting success.</p></li>
+<li><p>Consolidated over 20 years of monitoring reports. Analyzed land
+cover using publicly available data and aerial imagery. Created models
+to assess the impacts of landscape and management variables on Mountain
+Bluebird nesting success.</p></li>
+</ul>
+</div>
+<div id="section-28" class="section level3 active">
+<h3 class="active">-</h3>
+<p><strong>Mountain Bluebird Nesting Success in Response to Landscape
+Structure</strong></p>
+<p><br></p>
+</div>
+</div>
+<div id="grassland-birds-in-the-waterton-foothills-parkland"
+class="section level2 tabset">
+<h2 class="tabset">Grassland Birds in the Waterton Foothills
+Parkland</h2>
+<p>7-2020 to 11-2023 (3 Years) Pincher Creek, AB</p>
+<p><a href="https://www.umanitoba.ca/">University of Manitoba</a></p>
+<div id="description-29" class="section level3">
+<h3>Description</h3>
+<p><strong>Grassland Birds in the Waterton Foothills
+Parkland</strong></p>
+<ul>
+<li><p>Masters thesis project studying the interactions between
+landscape structure, vegetation communities, and cattle grazing on
+grassland bird communities on private conservation projects in southern
+Alberta.</p></li>
+<li><p>Designed and implemented monitoring program for birds on private
+conservation rangelands. Conducted point count surveys. Deployed and
+analyzed data from Autonomous Recording Units (ARUs). Analyzed spatial
+land cover data. Conducted rangeland health assessments. Leased with
+cattle managers, land owners, and non-profit partners.</p></li>
+<li><p>Awarded Conservation Science Fellowship in conjunction with the
+Nature Conservancy of Canada.</p></li>
+<li><p>Attempting to elucidate the species present in a highly conserved
+region that is understudied from an avian perspective. Informing cattle
+management best practices by linking species abundances to rangeland
+health. Informing the debate in landscape ecology of birds regarding
+whether habitat amount or fragmentation has larger impacts on habitat
+usage.</p></li>
+</ul>
+</div>
+<div id="media-1" class="section level3">
+<h3>Media</h3>
+<p><strong>Grassland Birds in the Waterton Foothills
+Parkland</strong></p>
+<p><a
+href="https://zacharymilosmoore.ca/visuals/gsb_proposal_v3.pdf">Thesis
+proposal (defended May 2021).</a></p>
+</div>
+<div id="section-29" class="section level3 active">
+<h3 class="active">-</h3>
+<p><strong>Grassland Birds in the Waterton Foothills
+Parkland</strong></p>
+<p><br></p>
+</div>
+</div>
+<div id="using-google-trends-to-predict-park-visitation"
+class="section level2 tabset">
+<h2 class="tabset">Using Google Trends to Predict Park Visitation</h2>
+<p>9-2020 to 12-2020 (3 Months) Winnipeg, MB</p>
+<p><a href="https://www.umanitoba.ca/">University of Manitoba</a></p>
+<div id="description-30" class="section level3">
+<h3>Description</h3>
+<p><strong>Using Google Trends to Predict Park Visitation</strong></p>
+<ul>
+<li><p>Explored possibility of using Google Trends data to predict
+public visitation to national parks in Canada.</p></li>
+<li><p>Sourced national park visitation data from Canada Open Data. Used
+gTrendsR package to correlate visitation with relative search
+interest.</p></li>
+<li><p>Preliminary results support that when visitation is above a given
+monthly threshold, Google Trends data has between a 40 and 70%
+correlation with visitation rates.</p></li>
+</ul>
+</div>
+<div id="media-2" class="section level3">
+<h3>Media</h3>
+<p><strong>Using Google Trends to Predict Park Visitation</strong></p>
+<p><a href="https://zacharymilosmoore.ca/visuals/trends_pb.pdf">Policy
+brief submitted in fulfillment of class project.</a></p>
+</div>
+<div id="links-1" class="section level3">
+<h3>Links</h3>
+<p><strong>Using Google Trends to Predict Park Visitation</strong></p>
+<p><a href="https://trends.google.ca">Google Trends</a></p>
+<p><a
+href="https://www.rdocumentation.org/packages/gtrendsR/versions/1.4.8">gTrendsR
+Documentation</a></p>
+</div>
+<div id="section-30" class="section level3 active">
+<h3 class="active">-</h3>
+<p><strong>Using Google Trends to Predict Park Visitation</strong></p>
+<p><br></p>
+</div>
+</div>
+<div id="rangeland-and-riparian-health-database"
+class="section level2 tabset">
+<h2 class="tabset">Rangeland and Riparian Health Database</h2>
+<p>1-2020 to 6-2020 (6 Months) Southern Region, AB</p>
+<p><a href="https://www.natureconservancy.ca/en/">Nature Conservancy
+Canada</a></p>
+<div id="description-31" class="section level3">
+<h3>Description</h3>
+<p><strong>Rangeland and Riparian Health Database</strong></p>
+<ul>
+<li><p>Created and analyzed database connecting historical and ongoing
+range and riparian health assessments.</p></li>
+<li><p>Conglomerated nearly 20 years of rangeland and riparian health
+reports across over 10,000 hectares of NCC property into a living excel
+database. Adapted range health polygons into analyzable format. Created
+automated analysis and reporting templates with table and figure outputs
+through R Statistical Programming.</p></li>
+<li><p>Created functional database to house historical data, input
+continuing assessment data, and automated analysis the conglomerated
+data to facilitate reporting.</p></li>
+<li><p>Scanned technical reports for important information. Standardized
+input of various report formats. Improved R-coding skills.</p></li>
+</ul>
+</div>
+<div id="media-3" class="section level3">
+<h3>Media</h3>
+<p><strong>Rangeland and Riparian Health Database</strong></p>
+<p><a
+href="https://zacharymilosmoore.ca/visuals/rrha_report_sub.pdf">Subset
+of final report and instruction manual submitted in completion of
+project.</a></p>
+<p><a
+href="https://zacharymilosmoore.ca/visuals/rrha_template.xlsx">Database
+for range and riparian health assessments allowing for automated
+analysis in R.</a></p>
+</div>
+<div id="section-31" class="section level3 active">
+<h3 class="active">-</h3>
+<p><strong>Rangeland and Riparian Health Database</strong></p>
+<p><br></p>
+</div>
+</div>
+<div id="biophysical-inventory" class="section level2 tabset">
+<h2 class="tabset">Biophysical Inventory</h2>
+<p>9-2019 to 6-2020 (9 Months) Nelson, BC</p>
+<p>Private Land Owner</p>
+<div id="description-32" class="section level3">
+<h3>Description</h3>
+<p><strong>Biophysical Inventory</strong></p>
+<ul>
+<li><p>Contract with private landowner in British Columbia to complete
+biophysical inventory of a 594 acre parcel of reforested land.</p></li>
+<li><p>Conducted preliminary site assessments using publicly available
+spatial data to assess edaphic and hydrological conditions. Assessed
+changes in land use through time using aerial imagery. Determined
+success of reforestation efforts based on increases in forest cover
+through in field surveys. Mapped and removed invasive species and dump
+sites.</p></li>
+<li><p>Discovered initial replanting efforts following logging were less
+successful than desired. Identified priority areas for management
+changes.</p></li>
+</ul>
+</div>
+<div id="media-4" class="section level3">
+<h3>Media</h3>
+<p><strong>Biophysical Inventory</strong></p>
+<p><a
+href="https://zacharymilosmoore.ca/visuals/ladybird_bi_sub.pdf">Subset
+of final report submitted in fulfillment of consultation.</a></p>
+</div>
+<div id="section-32" class="section level3 active">
+<h3 class="active">-</h3>
+<p><strong>Biophysical Inventory</strong></p>
+<p><br></p>
+</div>
+</div>
+<div id="western-canada-restoration-practitioner-survey"
+class="section level2 tabset">
+<h2 class="tabset">Western Canada Restoration Practitioner Survey</h2>
+<p>2-2020 to 5-2020 (3 Months) Western Canada</p>
+<p><a href="https://chapter.ser.org/westerncanada/">Society for
+Ecological Restoration</a></p>
+<div id="description-33" class="section level3">
+<h3>Description</h3>
+<p><strong>Western Canada Restoration Practitioner Survey</strong></p>
+<ul>
+<li><p>Pilot survey of restoration practitioners in the Kootenay region
+of BC to identify usage of SER Principles in restoration project design
+and implementation.</p></li>
+<li><p>Designed and distributed survey. Analyzed results. Presented
+publicly.</p></li>
+<li><p>Presented preliminary results as a poster at SER 2021 World
+Conferences.</p></li>
+<li><p>Learned that international principles are generally implemented
+by Western Canadian practitioners, in some cases without knowledge of
+SER. Identified additional priorities specific to Canadian
+restoration.</p></li>
+</ul>
+</div>
+<div id="media-5" class="section level3">
+<h3>Media</h3>
+<p><strong>Western Canada Restoration Practitioner Survey</strong></p>
+<p><a href="https://zacharymilosmoore.ca/visuals/serwc_poster.pdf">SER
+2021 World Conference poster presentation.</a></p>
+</div>
+<div id="links-2" class="section level3">
+<h3>Links</h3>
+<p><strong>Western Canada Restoration Practitioner Survey</strong></p>
+<p><a href="https://chapter.ser.org/westerncanada/">Collaborators: Emily
+Pejic, Rebecca Wilson</a></p>
+</div>
+<div id="section-33" class="section level3 active">
+<h3 class="active">-</h3>
+<p><strong>Western Canada Restoration Practitioner Survey</strong></p>
+<p><br></p>
+</div>
+</div>
+<div id="terrestrial-insect-restoration-responses"
+class="section level2 tabset">
+<h2 class="tabset">Terrestrial Insect Restoration Responses</h2>
+<p>9-2018 to 5-2019 (8 Months) Niagara-On-The-Lake, ON</p>
+<p><a href="https://www.niagaracollege.ca/">Niagara College</a></p>
+<div id="description-34" class="section level3">
+<h3>Description</h3>
+<p><strong>Terrestrial Insect Restoration Responses</strong></p>
+<ul>
+<li><p>Summative project in college program comparing terrestrial
+arthropod communities in wetlands at different stages of ecological
+restoration.</p></li>
+<li><p>Used Malaise traps and pitfall traps to collect insect specimens
+at two wetlands: one restored in the 1970’s and one restored one year
+prior to assessment.</p></li>
+<li><p>Found that total insect abundance was higher at the older
+restoration project, but taxonomic diversity was not. Provided
+recommendations on inclusion into existing long term monitoring
+programs.</p></li>
+</ul>
+</div>
+<div id="media-6" class="section level3">
+<h3>Media</h3>
+<p><strong>Terrestrial Insect Restoration Responses</strong></p>
+<p><a
+href="https://zacharymilosmoore.ca/visuals/terrestrial_insects_paper.pdf">Final
+paper submitted in completion of course</a></p>
+</div>
+<div id="links-3" class="section level3">
+<h3>Links</h3>
+<p><strong>Terrestrial Insect Restoration Responses</strong></p>
+<p><a href="https://www.niagaracollege.ca/">Collaborator: Michelle
+Place</a></p>
 </div>
 <div id="section-34" class="section level3 active">
 <h3 class="active">-</h3>
-<p><strong>Research Assistant (Agrawal Lab)</strong></p>
+<p><strong>Terrestrial Insect Restoration Responses</strong></p>
 <p><br></p>
-<p><br></p>
 </div>
 </div>
-</div>
-<div id="awards" class="section level1">
-<h1><strong>Awards</strong></h1>
-<div id="nature-conservancy-canada-ncc-1" class="section level2 tabset">
-<h2 class="tabset">Nature Conservancy Canada (NCC)</h2>
-<p>9-2020 to 4-2022 (2 Years) Winnipeg, MB <a href="https://www.natureconservancy.ca/en/">Website</a></p>
+<div id="aphid-farm-tritrophic-community-interactions-ksr-usra"
+class="section level2 tabset">
+<h2 class="tabset">Aphid Farm: Tritrophic Community Interactions (KSR
+USRA)</h2>
+<p>9-2016 to 9-2017 (1 Year) Toronto, ON</p>
+<p><a href="https://www.utoronto.ca/">University of Toronto</a></p>
 <div id="description-35" class="section level3">
 <h3>Description</h3>
-<p><strong>Conservation Science Fellowship (CSF)</strong></p>
+<p><strong>Aphid Farm: Tritrophic Community Interactions (KSR
+USRA)</strong></p>
 <ul>
-<li>$30,000 annual stipend during Master’s of Natural Resource Management at the University of Manitoba.</li>
+<li><p>Undergraduate thesis project using two aphid species in
+laboratory and field experiments to examine the relative impacts of
+temperature on consumer-resource interactions, density dependence,
+interspecific competition, ant-hemipteran mutualisms, and
+predation.</p></li>
+<li><p>Designed, implemented, and maintained manipulative experiments in
+growth chambers and field cages. Analyzed and presented data.</p></li>
+<li><p>Awarded University of Toronto’s Koffler Scientific Reserve
+Undergraduate Research Award (KSR USRA). Received ‘Best Poster
+Presentation in Evolutionary Ecology’ award at University of Toronto
+undergraduate research fair (March 2017).</p></li>
 </ul>
+</div>
+<div id="media-7" class="section level3">
+<h3>Media</h3>
+<p><strong>Aphid Farm: Tritrophic Community Interactions (KSR
+USRA)</strong></p>
+<p><a
+href="https://zacharymilosmoore.ca/visuals/aphid_farm_interactions.pdf">Diagrammatic
+representation of interactions within model system.</a></p>
+<p><a
+href="https://zacharymilosmoore.ca/visuals/aphid_farm_poster.pdf">Poster
+submitted in fulfillment of preliminary study for undergraduate
+thesis.</a></p>
+<p><a
+href="https://zacharymilosmoore.ca/visuals/aphid_farm_fld3.jpeg">Experimental
+community modelling results.</a></p>
+</div>
+<div id="links-4" class="section level3">
+<h3>Links</h3>
+<p><strong>Aphid Farm: Tritrophic Community Interactions (KSR
+USRA)</strong></p>
+<p><a href="http://gilbert.eeb.utoronto.ca/">Collaborator: Benjamin
+Gilbert</a></p>
 </div>
 <div id="section-35" class="section level3 active">
 <h3 class="active">-</h3>
-<p><strong>Conservation Science Fellowship (CSF)</strong></p>
+<p><strong>Aphid Farm: Tritrophic Community Interactions (KSR
+USRA)</strong></p>
 <p><br></p>
 </div>
 </div>
-<div id="koffler-scientific-reserve-ksr" class="section level2 tabset">
-<h2 class="tabset">Koffler Scientific Reserve (KSR)</h2>
-<p>5-2017 to 9-2017 (4 Months) King City, ON <a href="https://eeb.utoronto.ca/education/undergraduate/scholarships-and-awards/ksr-usra/">Website</a></p>
+<div id="turf-wars-understory-turf-transplant-success"
+class="section level2 tabset">
+<h2 class="tabset">Turf Wars: Understory Turf Transplant Success</h2>
+<p>8-2016 to 8-2016 (14 Days) Sudbury, ON</p>
+<p><a href="https://laurentian.ca/">Laurentian University</a></p>
 <div id="description-36" class="section level3">
 <h3>Description</h3>
-<p><strong>Undergraduate Student Research Award (USRA)</strong></p>
+<p><strong>Turf Wars: Understory Turf Transplant Success</strong></p>
 <ul>
-<li>$6,500 award for undergraduate student research project conducted at the University of Toronto’s Koffler Scientific Reserve at Joker’s Hill</li>
+<li><p>Ontario University Programs in Field Biology (OUPFB) field course
+project examining the impacts of forest understory turf transplants in
+restoration efforts.</p></li>
+<li><p>Compared vegetation communities, soil macroinvertebrate
+communities, and decomposition assays between reference and restored
+sites.</p></li>
+<li><p>Found that understory turf transplants were successful at
+establishing vegetation, but less successful at increasing function
+(decomposition) or soil macroinvertebrate diversity.</p></li>
 </ul>
+</div>
+<div id="media-8" class="section level3">
+<h3>Media</h3>
+<p><strong>Turf Wars: Understory Turf Transplant Success</strong></p>
+<p><a
+href="https://zacharymilosmoore.ca/visuals/turf_wars_paper.pdf">Final
+paper submitted in completion of course</a></p>
 </div>
 <div id="section-36" class="section level3 active">
 <h3 class="active">-</h3>
-<p><strong>Undergraduate Student Research Award (USRA)</strong></p>
-<p><br></p>
-</div>
-</div>
-<div id="natural-sciences-and-engineering-research-council-nserc" class="section level2 tabset">
-<h2 class="tabset">Natural Sciences and Engineering Research Council (NSERC)</h2>
-<p>5-2016 to 9-2016 (4 Months) Toronto, ON <a href="https://www.nserc-crsng.gc.ca/Students-Etudiants/UG-PC/USRA-BRPC_eng.asp">Website</a></p>
-<div id="description-37" class="section level3">
-<h3>Description</h3>
-<p><strong>Undergraduate Student Research Award (USRA)</strong></p>
-<ul>
-<li>$6,500 award for undergraduate student research project conducted at the University of Toronto</li>
-</ul>
-</div>
-<div id="section-37" class="section level3 active">
-<h3 class="active">-</h3>
-<p><strong>Undergraduate Student Research Award (USRA)</strong></p>
+<p><strong>Turf Wars: Understory Turf Transplant Success</strong></p>
 <p><br></p>
 <p><br></p>
 </div>
@@ -1149,41 +1426,183 @@ div.tocify {
 </div>
 <div id="conferences" class="section level1">
 <h1><strong>Conferences</strong></h1>
-<div id="society-for-ecological-restoration-ser-3" class="section level2 tabset">
+<div id="society-for-ecological-restoration-ser-2"
+class="section level2 tabset">
 <h2 class="tabset">Society for Ecological Restoration (SER)</h2>
-<p>6-2021 to 6-2021 (4 Days) Virtual</p>
-<div id="description-38" class="section level3">
+<p>10-2024 (5 Days) Vancouver, BC <a
+href="https://sernac.org/">Website</a></p>
+<div id="description-37" class="section level3">
 <h3>Description</h3>
-<p><strong>9th Annual World Conference</strong></p>
+<p><strong>2024 SER North America Conference</strong></p>
 <ul>
-<li><p>Poster presentation at global conference for advances in ecosystem restoration.</p></li>
-<li><p>Presented results for “Western Canada Restoration Practitioner Survey”</p></li>
+<li>Served on Outreach, Steering, and Programming Committee for 2024
+North American Conference on Cross-Biome Connections for Ecological
+Restoration across a diverse continent</li>
 </ul>
 </div>
-<div id="visuals-11" class="section level3">
-<h3>Visuals</h3>
-<p><embed src="visuals/serwc_poster.pdf" style="width:75.0%" /></p>
-<p>SER 2021 World Conference poster presentation.</p>
+<div id="section-37" class="section level3 active">
+<h3 class="active">-</h3>
+<p><strong>2024 SER North America Conference</strong></p>
+<p><br></p>
+</div>
+</div>
+<div id="society-for-conservation-biology-scb-1"
+class="section level2 tabset">
+<h2 class="tabset">Society for Conservation Biology (SCB)</h2>
+<p>6-2024 (6 Days) Vancouver, BC <a
+href="https://scbnorthamerica.org/index.php/naccb-2024/">Website</a></p>
+<div id="description-38" class="section level3">
+<h3>Description</h3>
+<p><strong>2024 SCB North American Congress for Conservation
+Biology</strong></p>
+<ul>
+<li>Served on Student Event Committee for 2024 North American Conference
+on Celebrating Diversity in Conservation from Summit to Sea.</li>
+</ul>
 </div>
 <div id="section-38" class="section level3 active">
 <h3 class="active">-</h3>
-<p><strong>9th Annual World Conference</strong></p>
+<p><strong>2024 SCB North American Congress for Conservation
+Biology</strong></p>
+<p><br></p>
+</div>
+</div>
+<div id="canadian-society-for-ecology-and-evolution-csee"
+class="section level2 tabset">
+<h2 class="tabset">Canadian Society for Ecology and Evolution
+(CSEE)</h2>
+<p>6-2023 (4 Days) Winnipeg, MB <a
+href="https://www.beepeg2023.ca/">Website</a></p>
+<div id="description-39" class="section level3">
+<h3>Description</h3>
+<p><strong>2023 Joint Annual Meeting with Canadian Botanical
+Association</strong></p>
+<ul>
+<li><p>Presented thesis results in 4-minute lightning talk.</p></li>
+<li><p>Presented “Obligate Grassland Birds in the Foothills Parkland:
+Impacts of Landscape on Field Survey Methods” as a poster.</p></li>
+<li><p>Awarded first place in student lightning talk competition. Won
+$200 USD in books from Princeton University Press.</p></li>
+</ul>
+</div>
+<div id="media-9" class="section level3">
+<h3>Media</h3>
+<p><strong>2023 Joint Annual Meeting with Canadian Botanical
+Association</strong></p>
+<p><a
+href="https://zacharymilosmoore.ca/visuals/csee_lightning.pdf">Lightning
+Talk</a></p>
+</div>
+<div id="section-39" class="section level3 active">
+<h3 class="active">-</h3>
+<p><strong>2023 Joint Annual Meeting with Canadian Botanical
+Association</strong></p>
+<p><br></p>
+</div>
+</div>
+<div id="ontario-chapter-of-the-wildlife-society-octws"
+class="section level2 tabset">
+<h2 class="tabset">Ontario Chapter of the Wildlife Society (OCTWS)</h2>
+<p>3-2023 (3 Days) Peterborough, ON <a
+href="https://www.octws.ca/2023-conference.html">Website</a></p>
+<div id="description-40" class="section level3">
+<h3>Description</h3>
+<p><strong>2023 Annual Meeting: Methods in Wildlife
+Research</strong></p>
+<ul>
+<li><p>Poster presentation at graduate student based
+conference.</p></li>
+<li><p>Presented “Obligate Grassland Birds in the Foothills Parkland:
+Impacts of Landscape on Field Survey Methods” as a poster.</p></li>
+</ul>
+</div>
+<div id="media-10" class="section level3">
+<h3>Media</h3>
+<p><strong>2023 Annual Meeting: Methods in Wildlife
+Research</strong></p>
+<p><a
+href="https://zacharymilosmoore.ca/visuals/octws_poster.pdf">Poster
+presentation</a></p>
+</div>
+<div id="section-40" class="section level3 active">
+<h3 class="active">-</h3>
+<p><strong>2023 Annual Meeting: Methods in Wildlife
+Research</strong></p>
+<p><br></p>
+</div>
+</div>
+<div id="society-for-canadian-orithologists-sco"
+class="section level2 tabset">
+<h2 class="tabset">Society for Canadian Orithologists (SCO)</h2>
+<p>9-2022 (2 Days) Online <a
+href="https://meeting.americanornithology.org/about/">Website</a></p>
+<div id="description-41" class="section level3">
+<h3>Description</h3>
+<p><strong>2023 Annual Conference: Birds as Bridges</strong></p>
+<ul>
+<li><p>Led workshop and presented thesis results in 10-minute talk at
+national conference.</p></li>
+<li><p>Led workshop entitled “ArcGIS and FieldMaps” and presented
+results from “Grassland Birds in the Foothills Parkland”.</p></li>
+</ul>
+</div>
+<div id="media-11" class="section level3">
+<h3>Media</h3>
+<p><strong>2023 Annual Conference: Birds as Bridges</strong></p>
+<p><a
+href="https://zacharymilosmoore.ca/visuals/sco_arcgis.pdf">Workshop
+presentation</a></p>
+</div>
+<div id="section-41" class="section level3 active">
+<h3 class="active">-</h3>
+<p><strong>2023 Annual Conference: Birds as Bridges</strong></p>
+<p><br></p>
+</div>
+</div>
+<div id="society-for-ecological-restoration-ser-3"
+class="section level2 tabset">
+<h2 class="tabset">Society for Ecological Restoration (SER)</h2>
+<p>6-2021 (4 Days) Virtual <a
+href="https://www.ser.org/page/WorldConference">Website</a></p>
+<div id="description-42" class="section level3">
+<h3>Description</h3>
+<p><strong>2021 9th Annual World Conference</strong></p>
+<ul>
+<li><p>Poster presentation at global conference for advances in
+ecosystem restoration.</p></li>
+<li><p>Co-authors presented results for “Western Canada Restoration
+Practitioner Survey”</p></li>
+</ul>
+</div>
+<div id="media-12" class="section level3">
+<h3>Media</h3>
+<p><strong>2021 9th Annual World Conference</strong></p>
+<p><a href="https://zacharymilosmoore.ca/visuals/serwc_poster.pdf">SER
+2021 World Conference poster presentation.</a></p>
+</div>
+<div id="section-42" class="section level3 active">
+<h3 class="active">-</h3>
+<p><strong>2021 9th Annual World Conference</strong></p>
 <p><br></p>
 </div>
 </div>
 <div id="world-wildlife-fund-wwf" class="section level2 tabset">
 <h2 class="tabset">World Wildlife Fund (WWF)</h2>
-<p>3-2019 to 3-2019 (1 Days) Toronto, ON <a href="https://campus.wwf.ca/event/designing-change-for-a-living-planet/">Website</a></p>
-<div id="description-39" class="section level3">
+<p>3-2019 (1 Days) Toronto, ON <a
+href="https://campus.wwf.ca/event/designing-change-for-a-living-planet/">Website</a></p>
+<div id="description-43" class="section level3">
 <h3>Description</h3>
 <p><strong>Designing Change for a Living Planet Competition</strong></p>
 <ul>
-<li><p>Niagara College Team presentation on reducing plastic waste through promoting cyclic economies.</p></li>
-<li><p>Created impromtu group pitch for a strategy for reducing plastic waste from single-use grocery bags.</p></li>
-<li><p>Received honourable mention amongst 15 other university and college teams.</p></li>
+<li><p>Niagara College Team presentation on reducing plastic waste
+through promoting cyclic economies.</p></li>
+<li><p>Created impromtu group pitch for a strategy for reducing plastic
+waste from single-use grocery bags.</p></li>
+<li><p>Received honourable mention amongst 15 other university and
+college teams.</p></li>
 </ul>
 </div>
-<div id="section-39" class="section level3 active">
+<div id="section-43" class="section level3 active">
 <h3 class="active">-</h3>
 <p><strong>Designing Change for a Living Planet Competition</strong></p>
 <p><br></p>
@@ -1191,68 +1610,87 @@ div.tocify {
 </div>
 <div id="university-of-toronto-uoft-3" class="section level2 tabset">
 <h2 class="tabset">University of Toronto (UofT)</h2>
-<p>3-2017 to 3-2017 (1 Days) Toronto, ON <a href="https://www.utoronto.ca/">Website</a></p>
-<div id="description-40" class="section level3">
+<p>3-2017 (1 Days) Toronto, ON <a
+href="https://www.utoronto.ca/">Website</a></p>
+<div id="description-44" class="section level3">
 <h3>Description</h3>
-<p><strong>Undergraduate Student Research Fair 2017</strong></p>
+<p><strong>2017 Undergraduate Student Research Fair</strong></p>
 <ul>
 <li><p>Poster presentation at undergraduate conference.</p></li>
-<li><p>Presented results from “Aphid Farm: Tritrophic Community Interactions”</p></li>
-<li><p>Awarded ‘Best Poster in Evolutionary Ecology’ in competition of 10 undergraduate students for poster presentation.</p></li>
+<li><p>Presented results from “Aphid Farm: Tritrophic Community
+Interactions”</p></li>
+<li><p>Awarded ‘Best Poster in Evolutionary Ecology’ in competition of
+10 undergraduate students for poster presentation.</p></li>
 </ul>
 </div>
-<div id="visuals-12" class="section level3">
-<h3>Visuals</h3>
-<p><embed src="visuals/aphid_farm_poster.pdf" style="width:75.0%" /></p>
-<p>Poster submitted in fulfillment of preliminary study for undergraduate thesis.</p>
+<div id="media-13" class="section level3">
+<h3>Media</h3>
+<p><strong>2017 Undergraduate Student Research Fair</strong></p>
+<p><a
+href="https://zacharymilosmoore.ca/visuals/aphid_farm_poster.pdf">Poster
+submitted in fulfillment of preliminary study for undergraduate
+thesis.</a></p>
 </div>
-<div id="section-40" class="section level3 active">
+<div id="section-44" class="section level3 active">
 <h3 class="active">-</h3>
-<p><strong>Undergraduate Student Research Fair 2017</strong></p>
+<p><strong>2017 Undergraduate Student Research Fair</strong></p>
 <p><br></p>
 </div>
 </div>
 <div id="university-of-toronto-uoft-4" class="section level2 tabset">
 <h2 class="tabset">University of Toronto (UofT)</h2>
-<p>5-2016 to 5-2016 (1 Days) Toronto, ON <a href="https://www.utoronto.ca/">Website</a></p>
-<div id="description-41" class="section level3">
+<p>5-2016 (1 Days) Toronto, ON <a
+href="https://www.utoronto.ca/">Website</a></p>
+<div id="description-45" class="section level3">
 <h3>Description</h3>
-<p><strong>Undergraduate Student Research Fair 2016</strong></p>
+<p><strong>2016 Undergraduate Student Research Fair</strong></p>
 <ul>
 <li><p>Poster presentation at undergraduate conference.</p></li>
-<li><p>Presented results from “Daphnia Fishery: Experimental Population Destabilization from Harvesting”</p></li>
+<li><p>Presented results from “Daphnia Fishery: Experimental Population
+Destabilization from Harvesting”</p></li>
 </ul>
 </div>
-<div id="visuals-13" class="section level3">
-<h3>Visuals</h3>
-<p><embed src="visuals/daphnia_fishery_poster.pdf" style="width:75.0%" /></p>
-<p>Poster submitted in fulfillment of preliminary study for undergraduate thesis.</p>
+<div id="media-14" class="section level3">
+<h3>Media</h3>
+<p><strong>2016 Undergraduate Student Research Fair</strong></p>
+<p><a
+href="https://zacharymilosmoore.ca/visuals/daphnia_fishery_poster.pdf">Poster
+submitted in fulfillment of preliminary study for undergraduate
+thesis.</a></p>
 </div>
-<div id="section-41" class="section level3 active">
+<div id="section-45" class="section level3 active">
 <h3 class="active">-</h3>
-<p><strong>Undergraduate Student Research Fair 2016</strong></p>
+<p><strong>2016 Undergraduate Student Research Fair</strong></p>
 <p><br></p>
 </div>
 </div>
-<div id="ontario-ecology-ethology-and-evolution-conference-oe3c" class="section level2 tabset">
-<h2 class="tabset">Ontario Ecology, Ethology and Evolution Conference (OE3C)</h2>
-<p>5-2016 to 5-2016 (3 Days) Toronto, ON <a href="https://oe3c2016blog.wordpress.com/">Website</a></p>
-<div id="description-42" class="section level3">
+<div id="ontario-ecology-ethology-and-evolution-conference-oe3c"
+class="section level2 tabset">
+<h2 class="tabset">Ontario Ecology, Ethology and Evolution Conference
+(OE3C)</h2>
+<p>5-2016 (3 Days) Toronto, ON <a
+href="https://oe3c2016blog.wordpress.com/">Website</a></p>
+<div id="description-46" class="section level3">
 <h3>Description</h3>
-<p><strong>Ontario Ecology, Ethology and Evolution Conference</strong></p>
+<p><strong>2016 Conference</strong></p>
 <ul>
-<li><p>Poster presentation at graduate student based conference.</p></li>
-<li><p>Presented results from “Daphnia Fishery: Experimental Population Destabilization from Harvesting”</p></li>
+<li><p>Poster presentation at graduate student based
+conference.</p></li>
+<li><p>Presented results from “Daphnia Fishery: Experimental Population
+Destabilization from Harvesting”</p></li>
 </ul>
 </div>
-<div id="visuals-14" class="section level3">
-<h3>Visuals</h3>
-<p><embed src="visuals/daphnia_fishery_poster.pdf" style="width:75.0%" /></p>
-<p>Poster submitted in fulfillment of preliminary study for undergraduate thesis.</p>
+<div id="media-15" class="section level3">
+<h3>Media</h3>
+<p><strong>2016 Conference</strong></p>
+<p><a
+href="https://zacharymilosmoore.ca/visuals/daphnia_fishery_poster.pdf">Poster
+submitted in fulfillment of preliminary study for undergraduate
+thesis.</a></p>
 </div>
-<div id="section-42" class="section level3 active">
+<div id="section-46" class="section level3 active">
 <h3 class="active">-</h3>
-<p><strong>Ontario Ecology, Ethology and Evolution Conference</strong></p>
+<p><strong>2016 Conference</strong></p>
 <p><br></p>
 <p><br></p>
 </div>
@@ -1260,166 +1698,190 @@ div.tocify {
 </div>
 <div id="certifications" class="section level1">
 <h1><strong>Certifications</strong></h1>
-<div id="canadian-aquatic-biomonitoring-network-field-assistant-cabin" class="section level2 tabset">
-<h2 class="tabset">Canadian Aquatic Biomonitoring Network Field Assistant (CABIN)</h2>
-<p>9-2019 to 1-2022 (28 Months) CAN</p>
-<p><a href="https://www.canadianriversinstitute.com/">Canadian Rivers Institute</a></p>
-<div id="description-43" class="section level3">
-<h3>Description</h3>
-<p><strong>Canadian Aquatic Biomonitoring Network Field Assistant (CABIN)</strong></p>
-<ul>
-<li>Trained and certified to participate in data collection for CABIN studies.</li>
-</ul>
-</div>
-<div id="section-43" class="section level3 active">
-<h3 class="active">-</h3>
-<p><strong>Canadian Aquatic Biomonitoring Network Field Assistant (CABIN)</strong></p>
+<div id="pleasure-craft-operators-card-pcoc" class="section level2">
+<h2>Pleasure Craft Operators Card (PCOC)</h2>
+<p>1-2019 to 11-2023 (5 Years) CAN</p>
+<p><a
+href="https://www.boaterexam.com/canada/?msclkid=c38695208a721a0b7cbcf41f3cea9982">Transportation
+Canada</a></p>
 <p><br></p>
 </div>
-</div>
-<div id="pleasure-craft-operators-card-pcoc" class="section level2 tabset">
-<h2 class="tabset">Pleasure Craft Operators Card (PCOC)</h2>
-<p>1-2019 to 1-2022 (37 Months) CAN</p>
-<p><a href="https://www.boaterexam.com/canada/?msclkid=c38695208a721a0b7cbcf41f3cea9982">Transportation Canada</a></p>
-<div id="description-44" class="section level3">
-<h3>Description</h3>
-<p><strong>Pleasure Craft Operators Card (PCOC)</strong></p>
-<ul>
-<li>Licenced for operation of a boat with a motor.</li>
-</ul>
-</div>
-<div id="section-44" class="section level3 active">
-<h3 class="active">-</h3>
-<p><strong>Pleasure Craft Operators Card (PCOC)</strong></p>
+<div
+id="restricted-operators-certificate---aeronautical-communications-roc-a"
+class="section level2">
+<h2>Restricted Operator’s Certificate - Aeronautical Communications
+(ROC-A)</h2>
+<p>10-2018 to 11-2023 (5 Years) CAN</p>
+<p><a
+href="https://www.ic.gc.ca/eic/site/smt-gst.nsf/eng/sf01397.html">Industry
+Canada</a></p>
 <p><br></p>
 </div>
-</div>
-<div id="ontario-benthos-biomonitoring-network-participant-obbn" class="section level2 tabset">
-<h2 class="tabset">Ontario Benthos Biomonitoring Network Participant (OBBN)</h2>
-<p>12-2018 to 1-2022 (38 Months) ON</p>
-<p><a href="https://www.ontario.ca/page/ministry-environment-conservation-parks#!%2F">Ontario Ministry of Environment, Conservation and Parks</a></p>
-<div id="description-45" class="section level3">
-<h3>Description</h3>
-<p><strong>Ontario Benthos Biomonitoring Network Participant (OBBN)</strong></p>
-<ul>
-<li>Trained to plan and participate in and plan aquatic biomonitoring projects involving freshwater invertebrates.</li>
-</ul>
-</div>
-<div id="section-45" class="section level3 active">
-<h3 class="active">-</h3>
-<p><strong>Ontario Benthos Biomonitoring Network Participant (OBBN)</strong></p>
+<div id="ontario-g-class-drivers-licence" class="section level2">
+<h2>Ontario G-Class Driver’s Licence</h2>
+<p>7-2012 to 11-2023 (11 Years) ON</p>
+<p><a
+href="https://www.ontario.ca/page/get-g-drivers-licence-new-drivers">Ontario
+Ministry of Transportation</a></p>
 <p><br></p>
 </div>
-</div>
-<div id="restricted-operators-certificate---aeronautical-communications-roc-a" class="section level2 tabset">
-<h2 class="tabset">Restricted Operator’s Certificate - Aeronautical Communications (ROC-A)</h2>
-<p>10-2018 to 1-2022 (40 Months) CAN</p>
-<p><a href="https://www.ic.gc.ca/eic/site/smt-gst.nsf/eng/sf01397.html">Industry Canada</a></p>
-<div id="description-46" class="section level3">
-<h3>Description</h3>
-<p><strong>Restricted Operator’s Certificate - Aeronautical Communications (ROC-A)</strong></p>
-<ul>
-<li>Trained and certified to operate an aeronautical VHF radio.</li>
-</ul>
-</div>
-<div id="section-46" class="section level3 active">
-<h3 class="active">-</h3>
-<p><strong>Restricted Operator’s Certificate - Aeronautical Communications (ROC-A)</strong></p>
+<div id="wilderness-and-remote-first-aid-cpr-aed-c"
+class="section level2">
+<h2>Wilderness and Remote First Aid/ CPR &amp; AED C</h2>
+<p>10-2018 to 10-2021 (3 Years) CAN</p>
+<p><a href="https://www.redcross.ca/training-and-certification">Canadian
+Red Cross</a></p>
 <p><br></p>
 </div>
-</div>
-<div id="wilderness-and-remote-first-aid-cpr-aed-c" class="section level2 tabset">
-<h2 class="tabset">Wilderness and Remote First Aid/ CPR &amp; AED C</h2>
-<p>10-2018 to 1-2022 (40 Months) CAN</p>
-<p><a href="https://www.redcross.ca/training-and-certification">Canadian Red Cross</a></p>
-<div id="description-47" class="section level3">
-<h3>Description</h3>
-<p><strong>Wilderness and Remote First Aid/ CPR &amp; AED C</strong></p>
-<ul>
-<li>Completed Canadian Red Cross Certified 20 hour course with CPR/AED-C.</li>
-</ul>
-</div>
-<div id="section-47" class="section level3 active">
-<h3 class="active">-</h3>
-<p><strong>Wilderness and Remote First Aid/ CPR &amp; AED C</strong></p>
+<div id="canadian-aquatic-biomonitoring-network-field-assistant-cabin"
+class="section level2">
+<h2>Canadian Aquatic Biomonitoring Network Field Assistant (CABIN)</h2>
+<p>9-2019 to 9-2021 (2 Years) CAN</p>
+<p><a href="https://www.canadianriversinstitute.com/">Canadian Rivers
+Institute</a></p>
 <p><br></p>
 </div>
-</div>
-<div id="ontario-g-class-drivers-licence" class="section level2 tabset">
-<h2 class="tabset">Ontario G-Class Driver’s Licence</h2>
-<p>7-2012 to 1-2022 (10 Years) ON</p>
-<p><a href="https://www.ontario.ca/page/get-g-drivers-licence-new-drivers">Ontario Ministry of Transportation</a></p>
-<div id="description-48" class="section level3">
-<h3>Description</h3>
-<p><strong>Ontario G-Class Driver’s Licence</strong></p>
-<ul>
-<li>Full non-probationary drivers licence for general vehicles.</li>
-</ul>
-</div>
-<div id="section-48" class="section level3 active">
-<h3 class="active">-</h3>
-<p><strong>Ontario G-Class Driver’s Licence</strong></p>
+<div id="ontario-benthos-biomonitoring-network-participant-obbn"
+class="section level2">
+<h2>Ontario Benthos Biomonitoring Network Participant (OBBN)</h2>
+<p>12-2018 to 12-2020 (2 Years) ON</p>
+<p><a
+href="https://www.ontario.ca/page/ministry-environment-conservation-parks#!%2F">Ontario
+Ministry of Environment, Conservation and Parks</a></p>
 <p><br></p>
 </div>
-</div>
-<div id="backpack-electrofishing-crew-lead-class-2" class="section level2 tabset">
-<h2 class="tabset">Backpack Electrofishing Crew Lead (Class 2)</h2>
+<div id="backpack-electrofishing-crew-lead-class-2"
+class="section level2">
+<h2>Backpack Electrofishing Crew Lead (Class 2)</h2>
 <p>10-2018 to 10-2020 (2 Years) CAN</p>
-<p><a href="https://tucanada.org/class-2-backpack-electrofishing/">Trout Unlimited Canada</a></p>
-<div id="description-49" class="section level3">
-<h3>Description</h3>
-<p><strong>Backpack Electrofishing Crew Lead (Class 2)</strong></p>
-<ul>
-<li>Trained and certified to operate a backpack electrofishing unit.</li>
-</ul>
-</div>
-<div id="section-49" class="section level3 active">
-<h3 class="active">-</h3>
-<p><strong>Backpack Electrofishing Crew Lead (Class 2)</strong></p>
+<p><a href="https://tucanada.org/class-2-backpack-electrofishing/">Trout
+Unlimited Canada</a></p>
 <p><br></p>
 </div>
-</div>
-<div id="board-governance-introduction" class="section level2 tabset">
-<h2 class="tabset">Board Governance Introduction</h2>
+<div id="board-governance-introduction" class="section level2">
+<h2>Board Governance Introduction</h2>
 <p>10-2019 to 10-2019 (1 Days) Pincher Creek, AB</p>
-<p><a href="https://www.alberta.ca/culture-and-status-of-women.aspx">Alberta Ministry of Culture, Multiculturalism, and the Status of Women</a></p>
-<div id="description-50" class="section level3">
-<h3>Description</h3>
-<p><strong>Board Governance Introduction</strong></p>
-<ul>
-<li>Completed 1-day course on fundamental aspects of non-profit board governance structure and operations.</li>
-</ul>
-</div>
-<div id="section-50" class="section level3 active">
-<h3 class="active">-</h3>
-<p><strong>Board Governance Introduction</strong></p>
+<p><a
+href="https://www.alberta.ca/culture-and-status-of-women.aspx">Alberta
+Ministry of Culture, Multiculturalism, and the Status of Women</a></p>
 <p><br></p>
 </div>
-</div>
-<div id="unmanned-aerial-vehicle-ground-school-uav" class="section level2 tabset">
-<h2 class="tabset">Unmanned Aerial Vehicle Ground School (UAV)</h2>
+<div id="unmanned-aerial-vehicle-ground-school-uav"
+class="section level2">
+<h2>Unmanned Aerial Vehicle Ground School (UAV)</h2>
 <p>10-2018 to 10-2018 (4 Days) Niagara-On-The-Lake, ON</p>
-<p><a href="http://www.wwfc.ca/">Waterloo Wellington Flight Centre</a></p>
-<div id="description-51" class="section level3">
-<h3>Description</h3>
-<p><strong>Unmanned Aerial Vehicle Ground School (UAV)</strong></p>
-<ul>
-<li>Trained in theoretical, practical, and legal surrounding usage of Unmanned Aerial Vehicles (UAVs) for various missions.</li>
-</ul>
-</div>
-<div id="section-51" class="section level3 active">
-<h3 class="active">-</h3>
-<p><strong>Unmanned Aerial Vehicle Ground School (UAV)</strong></p>
+<p><a href="http://www.wwfc.ca/">Waterloo Wellington Flight
+Centre</a></p>
 <p><br></p>
 <p><br></p>
 </div>
+</div>
+<div id="awards" class="section level1">
+<h1><strong>Awards</strong></h1>
+<div
+id="nature-conservancy-canada-ncc---conservation-science-fellowship-csf-9-2020"
+class="section level3">
+<h3>Nature Conservancy Canada (NCC) - Conservation Science Fellowship
+(CSF) 9-2020</h3>
+<p><br></p>
+</div>
+<div
+id="koffler-scientific-reserve-ksr---undergraduate-student-research-award-usra-5-2017"
+class="section level3">
+<h3>Koffler Scientific Reserve (KSR) - Undergraduate Student Research
+Award (USRA) 5-2017</h3>
+<p><br></p>
+</div>
+<div
+id="natural-sciences-and-engineering-research-council-nserc---undergraduate-student-research-award-usra-5-2016"
+class="section level3">
+<h3>Natural Sciences and Engineering Research Council (NSERC) -
+Undergraduate Student Research Award (USRA) 5-2016</h3>
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+<div id="accreditations" class="section level1">
+<h1><strong>Accreditations</strong></h1>
+<div
+id="alberta-society-for-professional-biologists-aspb---biologist-in-training-bit-5-2020"
+class="section level3">
+<h3>Alberta Society for Professional Biologists (ASPB) - Biologist in
+Training (BIT) 5-2020</h3>
+<p><br></p>
+</div>
+<div
+id="society-for-ecological-restoration-ser---certified-ecological-restoration-practitioner-in-training-cerpit-4-2019"
+class="section level3">
+<h3>Society for Ecological Restoration (SER) - Certified Ecological
+Restoration Practitioner in Training (CERPIT) 4-2019</h3>
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+<div id="publications" class="section level1">
+<h1><strong>Publications</strong></h1>
+<div
+id="rogers-l.-moore-z.-daigle-a.-liujckx-p.-and-krkosek-m.-2023.-experimental-evidence-of-size-selective-harvest-and-environmental-stochasticity-effects-on-population-demography-fluctuations-and-nonlinearity.-ecology-letters.-doi-10.1111ele.14181."
+class="section level3">
+<h3><a href="http://doi.org/10.1111/ele.14181">Rogers, L., Moore, Z.,
+Daigle, A., Liujckx, P., and Krkosek, M. 2023. Experimental evidence of
+size-selective harvest and environmental stochasticity effects on
+population demography, fluctuations, and nonlinearity. Ecology Letters.
+DOI: 10.1111/ele.14181.</a></h3>
+<p><br></p>
+<p><br></p>
+</div>
+</div>
+<div id="media-16" class="section level1">
+<h1><strong>Media</strong></h1>
+<div id="nature-conservancy-of-canada-magazine-fall-2023"
+class="section level3">
+<h3><a
+href="https://www.natureconservancy.ca/en/who-we-are/publications/magazine/fall-2023/future-proofing-conservation.html">Nature
+Conservancy of Canada Magazine (Fall 2023)</a></h3>
+<p><br></p>
+</div>
+<div
+id="food-for-the-future-podcast---our-world-ecosystem-restoration---united-nations-and-western-canada-2023"
+class="section level3">
+<h3><a
+href="https://curiouscast.ca/podcast/1258/food-for-the-future-hosted-by-peggy-oneil/">Food
+for the Future Podcast - Our World: Ecosystem Restoration - United
+Nations and Western Canada (2023)</a></h3>
+<p><br></p>
+</div>
+<div
+id="manitoba-cooperator---many-key-biodiversity-areas-identified-in-manitoba-2023"
+class="section level3">
+<h3><a
+href="https://www.manitobacooperator.ca/news-opinion/news/many-key-biodiversity-areas-identified-in-manitoba/">Manitoba
+Cooperator - Many Key Biodiversity Areas identified in Manitoba
+(2023)</a></h3>
+<p><br></p>
+</div>
+<div id="ctv-news---key-biodiversity-areas-in-manitoba-2023"
+class="section level3">
+<h3><a href="https://winnipeg.ctvnews.ca/video?clipId=2589471">CTV News
+- Key Biodiversity Areas in Manitoba (2023)</a></h3>
+<p><br></p>
+</div>
+<div id="ncc-magazine-fall-2020" class="section level3">
+<h3><a
+href="https://www.natureconservancy.ca/en/who-we-are/publications/magazine/fall-2020/">NCC
+Magazine (Fall 2020)</a></h3>
+<p><br></p>
+<p><br></p>
 </div>
 </div>
 </div>
 <div class="header">
-<p>Last Updated: Thu Jan 13 11:06:24 2022 <a href="https://github.com/zacharymilosmoore/zacharymilosmoore.github.io">GitHub Source</a></p>
+<p>Last Updated: Mon Nov 13 13:07:30 2023 <a
+href="https://github.com/zacharymilosmoore/zacharymilosmoore.github.io">GitHub
+Source</a></p>
 </div>
-<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
+<div class="tocify-extend-page" data-unique="tocify-extend-page"
+style="height: 0;">
 
 </div>
 

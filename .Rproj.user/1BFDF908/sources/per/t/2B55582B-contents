@@ -1,0 +1,35 @@
+---
+title: "cv2"
+author: "Zachary M. Moore"
+date: "28/03/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readxl)
+library(tidyverse)
+library(timevis)
+```
+
+## CV Timeline
+
+```{r}
+cv<-read_excel("cv_zmm.xlsx",sheet="CV")
+categories<-c("Education","Projects",
+              "Employment","Volunteering")
+
+c<-categories[1]
+
+cv %>%
+  filter(CV == "Include" & Category %in% categories) %>%
+  mutate(
+    id=c(1:n()),
+    content=paste(Organization, Title, sep = " - "),
+    start=Start,
+    end=End
+  ) %>%
+  select(id, content, start, end, Category) %>%
+  
+  timevis()
+```

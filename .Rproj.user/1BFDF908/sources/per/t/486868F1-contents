@@ -1,0 +1,51 @@
+---
+title: "Zachary M. Moore"
+output: html_document
+---
+<link rel="shortcut icon" href="images/site_logo_white.png" />
+
+<style type="text/css">
+.title {
+  display: none;
+}
+
+#getting-started img {
+  margin-right: 10px}
+
+</style>
+
+<div class="row" style="padding-top: 30px;">
+<div class="col-sm-6">
+
+# **Home**
+
+I am an environmental professional specializing in ecology, ecological restoration, and natural resources management. I am currently studying at the University of Manitoba in conjunction with the [Nature Conservancy of Canada](https://www.natureconservancy.ca/en/) as a [Conservation Science Fellow](https://www.natureconservancy.ca/en/what-we-do/conservation-research/weston-fellowship.html), and my research focuses on grassland bird conservation on private conservation rangelands in southwestern Alberta, Canada. 
+
+
+## My Specialities
+
+- Scientific Study Design, Implementation, and Reporting
+- Ecological Monitoring, Mapping, and Assessment
+- Ecological Restoration Planning, Implementation, and Assessment
+- Data Analysis Using R Statistical Programming and Geographic Information Systems (GIS)
+- Database Design Using Microsoft Excel, Access
+- Technical Reporting
+- Non-profit Governance and Administration
+- Outdoor Education and Outreach
+
+
+</div>
+<div class="col-sm-6">
+
+![](visuals/site_headshot.jpg){width=850pxl,height=1100pxl}
+</a>
+</div>
+<div class="header">
+
+Last Updated: 
+```{r,results="asis",echo=F} 
+
+cat(format(Sys.time(),"%c"))
+```
+[GitHub Source](https://github.com/zacharymilosmoore/zacharymilosmoore.github.io)
+</div>

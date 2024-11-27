@@ -21,9 +21,7 @@ library(tidyverse)
 
 cv<-read_excel("cv_zmm.xlsx",sheet="CV")
 categories<-c("Education","Employment","Volunteering","Projects","Conferences",
-              "Certifications","Awards","Accreditations","Publications","Media")
-
-categories2<-c()
+              "Certifications","Awards","Publications","Media")
 
 for (c in categories){
   cv_sub<-subset(cv,Category==c & CV=="Include")

@@ -19,9 +19,9 @@ output: html_document
 
 # **Home**
 
-I am an environmental professional specializing in conservation biology, ecology, ecological restoration, and natural resources management. I am currently studying at the University of Manitoba in conjunction with the [Nature Conservancy of Canada](https://www.natureconservancy.ca/en/) as a [Conservation Science Fellow](https://www.natureconservancy.ca/en/what-we-do/conservation-research/weston-fellowship.html), and my research focuses on grassland bird conservation on private conservation rangelands in southwestern Alberta, Canada. 
+I am an environmental professional specializing in ecology, ecological restoration, and data analysis. Currently, I am working to identify areas that are disproportionately important for biodiversity conservation in Canada through my [work on the Key Biodiversity Areas Project](https://kbacanada.org/) with [Wildlife Conservation Society Canada](https://www.wcs.org/). I also volunteer with the [Society for Conservation Biology North America (SCB-NA)](https://scbnorthamerica.org/) and I teach courses in the Ecological Restoration and Environmental Technician programs at [Niagara College Canada](https://www.niagaracollege.ca/). I additionally take on data consulting work here or there for specific and interesting projects, so please get in touch if you'd like to work together. 
 
-Currently, I work for [Wildlife Conservation Society Canada](https://www.wcs.org/) as the [Regional Key Biodiversity Area (KBA) Coordinator for Manitoba](https://kbacanada.org/), where I create proposals to recognize areas that disproportionately important for species-at-risk conservation for use in future land use planning and conservation. 
+
 
 
 ## My Specialities
@@ -30,7 +30,7 @@ Currently, I work for [Wildlife Conservation Society Canada](https://www.wcs.org
 - Ecological Monitoring, Mapping, and Assessment
 - Ecological Restoration Planning, Implementation, and Assessment
 - Data Analysis Using R Statistical Programming and Geographic Information Systems (GIS)
-- Database Design Using Microsoft Excel, Access
+- Database Design Using Microsoft Excel, Access, SQL
 - Technical Reporting
 - Non-profit Governance and Administration
 - Outdoor Education and Outreach
